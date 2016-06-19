@@ -1,6 +1,6 @@
-# node-letterboxd
+# letterboxd
 
-node package to consume latest public diary for a user
+get public diary data for letterboxd users
 
 _currently only consumes the RSS feeds from letterboxd, when API is released this will be used_
 
@@ -24,7 +24,7 @@ letterboxd('zaccolley', function(error, items){
 });
 ```
 
-### output
+#### output
 
 ```javascript
 [

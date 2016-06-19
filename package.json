@@ -1,12 +1,18 @@
 {
   "name": "letterboxd",
-  "version": "0.0.2",
-  "description": "",
+  "version": "0.0.3",
+  "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "letterboxd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zaccolley/letterboxd.git"
+  },
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
   "dependencies": {
