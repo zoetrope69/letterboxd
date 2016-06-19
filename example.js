@@ -1,6 +1,6 @@
-var letterboxd = require('./letterboxd');
+var letterboxd = require('./index');
 
-letterboxd('jason_alley', function(error, items){
+letterboxd('zaccolley', function(error, items){
   if (error) {
     return console.log(error);
   }
