@@ -56,7 +56,13 @@ function processItem(element) {
   var $ = cheerio.load(description);
 
   // find the film poster and grab it's src
-  item.image = $('p img').attr('src');
+  var image = $('p img').attr('src');
+  item.film.image = {
+    tiny: image.replace('-0-150-0-225-crop', '-0-35-0-50-crop'),
+    small: image.replace('-0-150-0-225-crop', '-0-70-0-105-crop'),
+    medium: image,
+    large: image.replace('-0-150-0-225-crop', '-0-230-0-345-crop')
+  };
 
   var reviewParagraphs = $('p');
 
