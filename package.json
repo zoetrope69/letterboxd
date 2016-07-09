@@ -1,6 +1,6 @@
 {
   "name": "letterboxd",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
