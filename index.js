@@ -45,7 +45,15 @@ function processItem(element) {
   rating.score = score2Text[rating.text];
   item.rating = rating;
 
-  var titleAndYear = titleData.substring(0, ratingStringPosition - 1);
+  var titleAndYear;
+
+  // if there is no rating titleAndYear is the whole string
+  if  {
+    titleAndYear = titleData;
+  } else {
+    titleAndYear = titleData.substring(0, ratingStringPosition - 1);
+  }
+
   var lastComma = titleAndYear.lastIndexOf(',');
   item.film = {
     title: titleData.substring(0, lastComma),
