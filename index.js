@@ -1,3 +1,5 @@
+'use strict';
+
 var request = require('request');
 var cheerio = require('cheerio');
 
@@ -48,7 +50,7 @@ function processItem(element) {
   var titleAndYear;
 
   // if there is no rating titleAndYear is the whole string
-  if  {
+  if (rating.score < 0) {
     titleAndYear = titleData;
   } else {
     titleAndYear = titleData.substring(0, ratingStringPosition - 1);
