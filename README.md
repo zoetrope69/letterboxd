@@ -1,4 +1,5 @@
 # letterboxd
+[![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)
 
 get public diary data for letterboxd users
 
