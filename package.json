@@ -19,5 +19,10 @@
   "dependencies": {
     "cheerio": "^0.20.0",
     "request": "^2.72.0"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.1.2",
+    "nock": "8.1.0"
   }
 }
