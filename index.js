@@ -50,7 +50,7 @@ function processItem(element) {
   var titleAndYear;
 
   // if there is no rating titleAndYear is the whole string
-  if (rating.score < 0) {
+  if (typeof rating.score === 'undefined' || rating.score === -1) {
     titleAndYear = titleData;
   } else {
     titleAndYear = titleData.substring(0, ratingStringPosition - 1);
