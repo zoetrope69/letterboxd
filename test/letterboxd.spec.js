@@ -8,7 +8,7 @@ var letterboxd = require('../index.js');
 var baseUrl = 'https://letterboxd.com';
 
 describe('letterboxd', function () {
-    it('should return an error the username is null', function (done) {
+    it('should return an error if the username is null', function (done) {
         var username = null;
 
         letterboxd(username, function (error, items) {
@@ -21,7 +21,7 @@ describe('letterboxd', function () {
         });
     });
 
-    it('should return an error the username is blank', function (done) {
+    it('should return an error if the username is blank', function (done) {
         var username = '   ';
 
         letterboxd(username, function (error, items) {
