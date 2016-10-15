@@ -13,6 +13,24 @@ npm install letterboxd --save
 
 ## usage
 
+### function(username, [callback])
+
+Returns a promise if no callback is provided.
+
+```javascript
+var letterboxd = require('letterboxd');
+
+letterboxd('zaccolley')
+  .then(function(items) {
+    console.log(items);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+```
+
+or
+
 ```javascript
 var letterboxd = require('letterboxd');
 
