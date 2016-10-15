@@ -44,8 +44,3 @@ letterboxd('zaccolley', function(error, items){
   //...
 ]
 ```
-
-## todo
-
-1. add tests
-2. add support for consuming lists
