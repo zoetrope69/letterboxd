@@ -4,9 +4,12 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 function isListItem(element) {
+  // if the list path is in the url
   if (getUri(element).indexOf('/list/') !== -1) {
-    return false;
+    return true;
   }
+
+  return false;
 }
 
 function getDate(element) {
