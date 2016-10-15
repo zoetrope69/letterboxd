@@ -87,6 +87,24 @@ describe('letterboxd', function () {
         spoilers: true,
         date: { watched: 1472860800000, published: 1472923610000 },
         uri: 'https://letterboxd.com/zaccolley/film/sausage-party/'
+      },
+      {
+        date: {
+          published: 1474076102000,
+          watched: 1473984000000,
+        },
+        film: {
+          image: false,
+          title: "LBJ",
+          year: "2016",
+        },
+        rating: {
+          score: 2.5,
+          text: "★★½",
+        },
+        review: "There are several reasons why Rob Reiner might not seem like the right guy to direct a movie about LBJ. For one thing, the filmmaker has always been an outspoken liberal. For another, it’s hard to imagine that a man whose recent output includes “Flipped” and “The Bucket List” has any interest in making a movie about real people, let alone someone so famous. (We’ll grant him “Being Charlie,” the intensely personal drama he made about his son earlier this year.)\nBut the most pressing reason why Reiner doesn’t seem like a natural fit for the subject is that we live in a world where actual politics are starting to feel more like the movies with every passing day, and this may not the best time for someone with such cartoonish sensibilities to revisit the beltway. After all, the climactic speech that Michael Douglas delivered at the end of Reiner’s “The American President” is more urgent now than ever — once upon a time, “We have serious problems to solve and we need serious people to solve them” was the rousing stuff of a sweet romantic comedy, and not something that we desperately need to remind 50% of the people in this country.\nREAD THE FULL REVIEW ON INDIEWIRE",
+        spoilers: false,
+        uri: "https://letterboxd.com/zaccolley/film/lbj-2016/"
       }
     ];
 
