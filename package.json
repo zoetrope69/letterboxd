@@ -16,7 +16,7 @@
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.22.0",
     "request": "^2.72.0"
   },
   "devDependencies": {
