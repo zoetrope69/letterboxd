@@ -30,15 +30,16 @@ letterboxd('zaccolley', function(error, items){
 ```javascript
 [
   {
-    date: { watched: 1463702400000, published: 1463784779000 },
-    uri: 'https://letterboxd.com/zaccolley/film/zootopia/',
-    rating: { text: '★★★★', score: 4 },
     film: {
       title: 'Zootopia',
       year: '2016',
-      image: { tiny: '...', small: '...', medium: '...', large: '...' } 
+      image: { tiny: '...', small: '...', medium: '...', large: '...' }
     },
-    review: 'proper cute, funny and interesting through out. ...'
+    rating: { text: '★★★★', score: 4 },
+    review: 'proper cute, funny and interesting through out. ...',
+    spoilers: false,
+    date: { watched: 1463702400000, published: 1463784779000 },
+    uri: 'https://letterboxd.com/zaccolley/film/zootopia/'
   },
   //...
 ]

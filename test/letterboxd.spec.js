@@ -55,9 +55,6 @@ describe('letterboxd', function () {
         var username = 'zaccolley';
         var expectedItems = [
             {
-                date: {watched: 1475971200000, published: 1476047737000},
-                uri: 'https://letterboxd.com/zaccolley/film/steve-jobs/',
-                rating: {text: 'None', score: -1},
                 film: {
                     title: 'Steve Jobs',
                     year: '2015',
@@ -67,12 +64,14 @@ describe('letterboxd', function () {
                         small: 'https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-70-0-105-crop.jpg?k=ab7aba0910',
                         tiny: 'https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-35-0-50-crop.jpg?k=ab7aba0910'
                     }
-                }
+                },
+                rating: { text: 'None', score: -1 },
+                review: false,
+                spoilers: false,
+                date: { watched: 1475971200000, published: 1476047737000 },
+                uri: 'https://letterboxd.com/zaccolley/film/steve-jobs/'
             },
             {
-                date: {watched: 1472860800000, published: 1472923610000},
-                uri: 'https://letterboxd.com/zaccolley/film/sausage-party/',
-                rating: {text: '★', score: 1},
                 film: {
                     title: 'Sausage Party',
                     year: '2016',
@@ -83,7 +82,11 @@ describe('letterboxd', function () {
                         tiny: 'https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-35-0-50-crop.jpg?k=6dff82ac2b'
                     }
                 },
-                review: 'piece of shit'
+                rating: { text: '★', score: 1 },
+                review: 'piece of shit',
+                spoilers: true,
+                date: { watched: 1472860800000, published: 1472923610000 },
+                uri: 'https://letterboxd.com/zaccolley/film/sausage-party/'
             }
         ];
 
