@@ -2,6 +2,7 @@
 
 var request = require('request');
 var cheerio = require('cheerio');
+var promise = require('bluebird');
 
 function isListItem(element) {
   if (getUri(element).indexOf('/list/') !== -1) {
@@ -163,40 +164,46 @@ function invalidUsername(username) {
   return !username || username.trim().length <= 0;
 }
 
+function getDiaryData(username) {
+  var uri = 'https://letterboxd.com/' + username + '/rss/';
+
+  return new promise(function (resolve, reject) {
+    request(uri, function (error, response, body) {
+      if (error) {
+        return reject('Error:', error);
+      }
+
+      // if 404 we're assuming that the username does not exist or have a public RSS feed
+      if (response.statusCode === 404) {
+        return reject('No RSS feed found for username by "'+ username +'" at Letterboxd');
+      } else if (response.statusCode !== 200) {
+        return reject('Something went wrong');
+      }
+
+      var $ = cheerio.load(body, { xmlMode: true });
+
+      var items = [];
+
+      $('item').each(function(i, element) {
+        var item = processItem($(element));
+
+        if (item) {
+          items[i] = item;
+        }
+      });
+
+      return resolve(items);
+    });
+  });
+}
+
 function main(username, callback) {
   // check if a valid username has been passed in
   if (invalidUsername(username)) {
     return callback('No username sent as a parameter');
   }
 
-  var uri = 'https://letterboxd.com/' + username + '/rss/';
-
-  request(uri, function (error, response, body) {
-    if (error) {
-      return callback('Error:', error);
-    }
-
-    // if 404 we're assuming that the username does not exist or have a public RSS feed
-    if (response.statusCode === 404) {
-      return callback('No RSS feed found for username by "'+ username +'" at Letterboxd');
-    } else if (response.statusCode !== 200) {
-      return callback('Something went wrong');
-    }
-
-    var $ = cheerio.load(body, { xmlMode: true });
-
-    var items = [];
-
-    $('item').each(function(i, element) {
-      var item = processItem($(element));
-
-      if (item) {
-        items[i] = item;
-      }
-    });
-
-    return callback(null, items);
-  });
-};
+  return getDiaryData(username).asCallback(callback);
+}
 
 module.exports = main;
