@@ -4,7 +4,7 @@
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec && node example.js"
+    "test": "node example.js && ./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [
     "letterboxd"
