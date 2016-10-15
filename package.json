@@ -4,7 +4,7 @@
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
-    "example": "npm install && node example.js",
+    "test": "./node_modules/.bin/mocha --reporter spec && node example.js"
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [
@@ -17,7 +17,7 @@
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^0.20.0",
+    "cheerio": "^0.22.0",
     "request": "^2.72.0"
   },
   "devDependencies": {

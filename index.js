@@ -3,26 +3,37 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-function processItem(element) {
-  var item = {
-    date: {
-      watched: +new Date(element.find('letterboxd\\:watchedDate').text()),
-      published: +new Date(element.find('pubDate').text())
-    },
-    uri: element.find('link').html()
-  };
-
-  // no support for lists for now
-  if (item.uri.indexOf('/list/') !== -1) {
+function isListItem(element) {
+  if (getUri(element).indexOf('/list/') !== -1) {
     return false;
   }
+}
 
-  var titleData = element.find('title').text();
+function getDate(element) {
+  return {
+    watched: +new Date(element.find('letterboxd\\:watchedDate').text()),
+    published: +new Date(element.find('pubDate').text())
+  };
+}
+
+function getUri(element) {
+  return element.find('link').html();
+}
+
+function getTitleData(element) {
+  return element.find('title').text();
+}
+
+function getSpoilers(element) {
+  var titleData = getTitleData(element);
 
   var containsSpoilersString = '(contains spoilers)';
-  if (titleData.indexOf(containsSpoilersString) !== -1) {
-    item.spoilers = true;
-  }
+  return (titleData.indexOf(containsSpoilersString) !== -1);
+}
+
+function getRating(element) {
+  var titleData = getTitleData(element);
+  var spoilers = getSpoilers(element);
 
   var rating = {
     text: 'None'
@@ -33,7 +44,8 @@ function processItem(element) {
   // if there is no '-' character there is no rating
   if (ratingStringPosition !== -1) {
     var endPosition = titleData.length;
-    if (item.spoilers) {
+    if (spoilers) {
+      var containsSpoilersString = '(contains spoilers)';
       endPosition = endPosition - containsSpoilersString.length - 1;
     }
     rating.text = titleData.substring(ratingStringPosition + 2, endPosition);
@@ -45,46 +57,66 @@ function processItem(element) {
     '★★★': 3.0, '★★★½': 3.5, '★★★★': 4.0, '★★★★½': 4.5, '★★★★★': 5.0,
   };
   rating.score = score2Text[rating.text];
-  item.rating = rating;
 
-  var titleAndYear;
+  return rating;
+}
+
+function getTitleYearData(element) {
+  var titleData = getTitleData(element);
+  var rating = getRating(element);
+  var ratingStringPosition = titleData.lastIndexOf('-');
 
   // if there is no rating titleAndYear is the whole string
   if (typeof rating.score === 'undefined' || rating.score === -1) {
-    titleAndYear = titleData;
+    return titleData;
   } else {
-    titleAndYear = titleData.substring(0, ratingStringPosition - 1);
+    return titleData.substring(0, ratingStringPosition - 1);
   }
+}
 
+function getTitle(element) {
+  var titleData = getTitleData(element);
+  var titleAndYear = getTitleYearData(element);
   var lastComma = titleAndYear.lastIndexOf(',');
-  item.film = {
-    title: titleData.substring(0, lastComma),
-    year: titleData.substring(lastComma + 2, titleAndYear.length)
-  };
+  return titleData.substring(0, lastComma);
+}
 
+function getYear(element) {
+  var titleData = getTitleData(element);
+  var titleAndYear = getTitleYearData(element);
+  var lastComma = titleAndYear.lastIndexOf(',');
+  return titleData.substring(lastComma + 2, titleAndYear.length);
+}
+
+function getImage(element) {
   var description = element.find('description').text();
   var $ = cheerio.load(description);
 
   // find the film poster and grab it's src
   var image = $('p img').attr('src');
-  item.film.image = {
+  return {
     tiny: image.replace('-0-150-0-225-crop', '-0-35-0-50-crop'),
     small: image.replace('-0-150-0-225-crop', '-0-70-0-105-crop'),
     medium: image,
     large: image.replace('-0-150-0-225-crop', '-0-230-0-345-crop')
   };
+}
+
+function getReview(element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
 
   var reviewParagraphs = $('p');
 
   // if there is no review return the item
   if (reviewParagraphs.length <= 0) {
-    return item;
+    return false;
   }
 
   // the rest of description is a review, if there is no review the string 'Watched on ' will appear
   // this assumes you didn't write the 'Watched on ' string in your review... weak
   if (reviewParagraphs.last().text().indexOf('Watched on ') !== -1) {
-    return item;
+    return false;
   }
 
   var review = '';
@@ -100,15 +132,40 @@ function processItem(element) {
   });
 
   // tidy up and add review to the item
-  item.review = review.trim();
+  review = review.trim();
+
+  return review;
+}
+
+function processItem(element) {
+  // no support for lists for now
+  if (isListItem(element)) {
+    return false;
+  }
+
+  var item = {
+    film: {
+      title: getTitle(element),
+      year: getYear(element),
+      image: getImage(element)
+    },
+    rating: getRating(element),
+    review: getReview(element),
+    spoilers: getSpoilers(element),
+    date: getDate(element),
+    uri: getUri(element)
+  };
 
   return item;
 }
 
-module.exports = function(username, callback) {
+function invalidUsername(username) {
+  return !username || username.trim().length <= 0;
+}
 
+function main(username, callback) {
   // check if a valid username has been passed in
-  if (!username || username.trim().length <= 0) {
+  if (invalidUsername(username)) {
     return callback('No username sent as a parameter');
   }
 
@@ -132,7 +189,7 @@ module.exports = function(username, callback) {
 
     $('item').each(function(i, element) {
       var item = processItem($(element));
-      
+
       if (item) {
         items[i] = item;
       }
@@ -141,3 +198,5 @@ module.exports = function(username, callback) {
     return callback(null, items);
   });
 };
+
+module.exports = main;
