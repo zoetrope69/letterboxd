@@ -136,7 +136,7 @@ describe('letterboxd', function () {
 
     nock(baseUrl)
       .get('/' + username + '/rss/')
-      .replyWithFile(200, __dirname + '/fixtures/diary-sample.xml', {
+      .replyWithFile(200, __dirname + '/fixtures/rss-sample.xml', {
         'Content-Type': 'application/xml'
       });
 
