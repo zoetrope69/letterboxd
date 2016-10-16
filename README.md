@@ -3,8 +3,6 @@
 
 get public data for letterboxd users
 
-*due to the limitation of the data source (scraping a RSS feed), only the 20 most recent diary entries can be retrieved*
-
 _currently only consumes the RSS feeds from letterboxd, when API is released this will be used_
 
 ## installation
@@ -51,9 +49,12 @@ output is an array of items.
 
 there are two types of items: diary entries and lists.
 
-two items of note for the list type:
+**due to the limitation of the data source (scraping a RSS feed), only the 20 most recent diary entries are returned**
+
+items of note for the list type:
 
 + `ranked`: shows if it was set to ranked (1, 2, 3, 4).
++ `films`: films in the list, capped at 10
 + `totalFilms`: the total amount of films in the list, only 10 films are given here.
 
 ```javascript
