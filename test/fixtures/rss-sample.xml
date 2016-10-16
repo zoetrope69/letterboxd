@@ -48,5 +48,15 @@
           </description>
           <dc:creator>Zac Colley</dc:creator>
         </item>
+	      <item>
+          <title>Fake List</title>
+          <link>https://letterboxd.com/zaccolley/list/fake-list/</link>
+          <guid isPermaLink="false">letterboxd-list-1234567</guid>
+          <pubDate>Sat, 18 Sep 2016 13:23:28 +1200</pubDate>
+          <description>
+            <![CDATA[ <ul> <li> <a href="https://letterboxd.com/film/fake-2016/">Fake</a> </li> <li> <a href="https://letterboxd.com/film/fake-2-2016/">Fake 2</a> </li> </ul> ]]>
+          </description>
+          <dc:creator>Zac Colley</dc:creator>
+        </item>
     </channel>
 </rss>

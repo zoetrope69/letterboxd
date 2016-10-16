@@ -131,6 +131,21 @@ describe('letterboxd', function () {
         ],
         totalFilms: 56,
         uri: 'https://letterboxd.com/zaccolley/list/tiff-2016/'
+      },
+      {
+        type: 'list',
+        date: {
+          published: 1474161808000
+        },
+        title: 'Fake List',
+        description: false,
+        ranked: false,
+        films: [
+          { title: 'Fake', uri: 'https://letterboxd.com/film/fake-2016/' },
+          { title: 'Fake 2', uri: 'https://letterboxd.com/film/fake-2-2016/' }
+        ],
+        totalFilms: 2,
+        uri: 'https://letterboxd.com/zaccolley/list/fake-list/'
       }
     ];
 
