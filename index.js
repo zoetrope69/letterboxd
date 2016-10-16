@@ -13,11 +13,12 @@ function isListItem(element) {
   return false;
 }
 
-function getDate(element) {
-  return {
-    watched: +new Date(element.find('letterboxd\\:watchedDate').text()),
-    published: +new Date(element.find('pubDate').text())
-  };
+function getPublishedDate(element) {
+  return +new Date(element.find('pubDate').text());
+}
+
+function getWatchedDate(element) {
+  return +new Date(element.find('letterboxd\\:watchedDate').text());
 }
 
 function getUri(element) {
@@ -147,13 +148,109 @@ function getReview(element) {
   return review;
 }
 
-function processItem(element) {
-  // no support for lists for now
-  if (isListItem(element)) {
-    return false;
+function getListFilms(element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var films = [];
+  $('li a').each(function(i, filmElement) {
+    films.push({
+      title: $(filmElement).text(),
+      uri: $(filmElement).attr('href')
+    });
+  });
+  return films;
+}
+
+function getListDescription(element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var result = false;
+
+  // if there are no paragraphs in the description there isnt one
+  if ($('p').length <= 0) {
+    return result;
   }
 
-  var item = {
+  $('p').each(function(i, element) {
+    // we'll assume descriptions dont have the link text in
+    var text = $(element).text();
+    var isntPlusMoreParagraph = text.indexOf('View the full list on Letterboxd') === -1;
+    if (isntPlusMoreParagraph) {
+      result = text;
+    }
+  });
+
+  return result;
+}
+
+function getListTotalFilms(element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var films = getListFilms(element);
+
+  var result = films.length;
+
+  // if there are no paragraphs in the description there isnt one
+  if ($('p').length <= 0) {
+    return result;
+  }
+
+  $('p').each(function(i, paragraphElement) {
+    var text = $(paragraphElement).text();
+    var isPlusMoreParagraph = text.indexOf('View the full list on Letterboxd') !== -1;
+    if (isPlusMoreParagraph) {
+      var startNumberPositionString = '...plus ';
+      var startNumberPosition = text.indexOf(startNumberPositionString) + startNumberPositionString.length;
+
+      var endNumberPositionString = ' more. View the full list on Letterboxd.';
+      var endNumberPosition = text.indexOf(endNumberPositionString);
+
+      var number = +text.substring(startNumberPosition, endNumberPosition);
+
+      result += number;
+    }
+  });
+
+  return result;
+}
+
+function isListRanked(element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var isOrderedListPresent = !!$('ol').length;
+  return isOrderedListPresent;
+}
+
+function processItem(element) {
+  // there are two types of items: lists and diary entries
+
+  if (isListItem(element)) {
+    // return a list
+    return {
+      type: 'list',
+      date: {
+        published: getPublishedDate(element)
+      },
+      title: getTitleData(element),
+      description: getListDescription(element),
+      ranked: isListRanked(element),
+      films: getListFilms(element),
+      totalFilms: getListTotalFilms(element),
+      uri: getUri(element)
+    };
+  }
+
+  // otherwise return a diary entry
+  return {
+    type: 'diary',
+    date: {
+      published: getPublishedDate(element),
+      watched: getWatchedDate(element)
+    },
     film: {
       title: getTitle(element),
       year: getYear(element),
@@ -162,11 +259,8 @@ function processItem(element) {
     rating: getRating(element),
     review: getReview(element),
     spoilers: getSpoilers(element),
-    date: getDate(element),
     uri: getUri(element)
   };
-
-  return item;
 }
 
 function invalidUsername(username) {
