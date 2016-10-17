@@ -2,9 +2,9 @@
 
 var request = require('request');
 var cheerio = require('cheerio');
-var promise = require('bluebird');
+var Promise = require('bluebird');
 
-function isListItem(element) {
+function isListItem (element) {
   // if the list path is in the url
   if (getUri(element).indexOf('/list/') !== -1) {
     return true;
@@ -13,29 +13,30 @@ function isListItem(element) {
   return false;
 }
 
-function getDate(element) {
-  return {
-    watched: +new Date(element.find('letterboxd\\:watchedDate').text()),
-    published: +new Date(element.find('pubDate').text())
-  };
+function getPublishedDate (element) {
+  return +new Date(element.find('pubDate').text());
 }
 
-function getUri(element) {
+function getWatchedDate (element) {
+  return +new Date(element.find('letterboxd\\:watchedDate').text());
+}
+
+function getUri (element) {
   return element.find('link').html();
 }
 
-function getTitleData(element) {
+function getTitleData (element) {
   return element.find('title').text();
 }
 
-function getSpoilers(element) {
+function getSpoilers (element) {
   var titleData = getTitleData(element);
 
   var containsSpoilersString = '(contains spoilers)';
   return (titleData.indexOf(containsSpoilersString) !== -1);
 }
 
-function getRating(element) {
+function getRating (element) {
   var titleData = getTitleData(element);
   var spoilers = getSpoilers(element);
 
@@ -57,15 +58,24 @@ function getRating(element) {
 
   // give a number score for the text that matches
   var score2Text = {
-    'None': -1.0, '½': 0.5, '★': 1.0, '★½': 1.5, '★★': 2.0, '★★½': 2.5,
-    '★★★': 3.0, '★★★½': 3.5, '★★★★': 4.0, '★★★★½': 4.5, '★★★★★': 5.0,
+    'None': -1.0,
+    '½': 0.5,
+    '★': 1.0,
+    '★½': 1.5,
+    '★★': 2.0,
+    '★★½': 2.5,
+    '★★★': 3.0,
+    '★★★½': 3.5,
+    '★★★★': 4.0,
+    '★★★★½': 4.5,
+    '★★★★★': 5.0
   };
   rating.score = score2Text[rating.text];
 
   return rating;
 }
 
-function getTitleYearData(element) {
+function getTitleYearData (element) {
   var titleData = getTitleData(element);
   var rating = getRating(element);
   var ratingStringPosition = titleData.lastIndexOf('-');
@@ -78,21 +88,21 @@ function getTitleYearData(element) {
   }
 }
 
-function getTitle(element) {
+function getTitle (element) {
   var titleData = getTitleData(element);
   var titleAndYear = getTitleYearData(element);
   var lastComma = titleAndYear.lastIndexOf(',');
   return titleData.substring(0, lastComma);
 }
 
-function getYear(element) {
+function getYear (element) {
   var titleData = getTitleData(element);
   var titleAndYear = getTitleYearData(element);
   var lastComma = titleAndYear.lastIndexOf(',');
   return titleData.substring(lastComma + 2, titleAndYear.length);
 }
 
-function getImage(element) {
+function getImage (element) {
   var description = element.find('description').text();
   var $ = cheerio.load(description);
 
@@ -112,7 +122,7 @@ function getImage(element) {
   };
 }
 
-function getReview(element) {
+function getReview (element) {
   var description = element.find('description').text();
   var $ = cheerio.load(description);
 
@@ -132,7 +142,7 @@ function getReview(element) {
   var review = '';
 
   // loop through paragraphs
-  reviewParagraphs.each(function(){
+  reviewParagraphs.each(function () {
     var reviewParagraph = $(this).text();
 
     // only add paragaphs that are the review
@@ -147,13 +157,109 @@ function getReview(element) {
   return review;
 }
 
-function processItem(element) {
-  // no support for lists for now
-  if (isListItem(element)) {
-    return false;
+function getListFilms (element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var films = [];
+  $('li a').each(function (i, filmElement) {
+    films.push({
+      title: $(filmElement).text(),
+      uri: $(filmElement).attr('href')
+    });
+  });
+  return films;
+}
+
+function getListDescription (element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var result = false;
+
+  // if there are no paragraphs in the description there isnt one
+  if ($('p').length <= 0) {
+    return result;
   }
 
-  var item = {
+  $('p').each(function (i, element) {
+    // we'll assume descriptions dont have the link text in
+    var text = $(element).text();
+    var isntPlusMoreParagraph = text.indexOf('View the full list on Letterboxd') === -1;
+    if (isntPlusMoreParagraph) {
+      result = text;
+    }
+  });
+
+  return result;
+}
+
+function getListTotalFilms (element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var films = getListFilms(element);
+
+  var result = films.length;
+
+  // if there are no paragraphs in the description there isnt one
+  if ($('p').length <= 0) {
+    return result;
+  }
+
+  $('p').each(function (i, paragraphElement) {
+    var text = $(paragraphElement).text();
+    var isPlusMoreParagraph = text.indexOf('View the full list on Letterboxd') !== -1;
+    if (isPlusMoreParagraph) {
+      var startNumberPositionString = '...plus ';
+      var startNumberPosition = text.indexOf(startNumberPositionString) + startNumberPositionString.length;
+
+      var endNumberPositionString = ' more. View the full list on Letterboxd.';
+      var endNumberPosition = text.indexOf(endNumberPositionString);
+
+      var number = +text.substring(startNumberPosition, endNumberPosition);
+
+      result += number;
+    }
+  });
+
+  return result;
+}
+
+function isListRanked (element) {
+  var description = element.find('description').text();
+  var $ = cheerio.load(description);
+
+  var isOrderedListPresent = !!$('ol').length;
+  return isOrderedListPresent;
+}
+
+function processItem (element) {
+  // there are two types of items: lists and diary entries
+
+  if (isListItem(element)) {
+    // return a list
+    return {
+      type: 'list',
+      date: {
+        published: getPublishedDate(element)
+      },
+      title: getTitleData(element),
+      description: getListDescription(element),
+      ranked: isListRanked(element),
+      films: getListFilms(element),
+      totalFilms: getListTotalFilms(element),
+      uri: getUri(element)
+    };
+  }
+
+  // otherwise return a diary entry
+  return {
+    type: 'diary',
+    date: {
+      published: getPublishedDate(element),
+      watched: getWatchedDate(element)
+    },
     film: {
       title: getTitle(element),
       year: getYear(element),
@@ -162,21 +268,18 @@ function processItem(element) {
     rating: getRating(element),
     review: getReview(element),
     spoilers: getSpoilers(element),
-    date: getDate(element),
     uri: getUri(element)
   };
-
-  return item;
 }
 
-function invalidUsername(username) {
+function invalidUsername (username) {
   return !username || username.trim().length <= 0;
 }
 
-function getDiaryData(username) {
+function getDiaryData (username) {
   var uri = 'https://letterboxd.com/' + username + '/rss/';
 
-  return new promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     request(uri, function (error, response, body) {
       if (error) {
         return reject('Error:', error);
@@ -184,7 +287,7 @@ function getDiaryData(username) {
 
       // if 404 we're assuming that the username does not exist or have a public RSS feed
       if (response.statusCode === 404) {
-        return reject('No RSS feed found for username by "'+ username +'" at Letterboxd');
+        return reject('No RSS feed found for username by "' + username + '" at Letterboxd');
       } else if (response.statusCode !== 200) {
         return reject('Something went wrong');
       }
@@ -193,7 +296,7 @@ function getDiaryData(username) {
 
       var items = [];
 
-      $('item').each(function(i, element) {
+      $('item').each(function (i, element) {
         var item = processItem($(element));
 
         if (item) {
@@ -206,7 +309,7 @@ function getDiaryData(username) {
   });
 }
 
-function main(username, callback) {
+function main (username, callback) {
   // check if a valid username has been passed in
   if (invalidUsername(username)) {
     return callback('No username sent as a parameter');

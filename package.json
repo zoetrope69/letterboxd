@@ -1,17 +1,20 @@
 {
   "name": "letterboxd",
-  "version": "0.0.8",
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
-    "test": "node example.js && ./node_modules/.bin/mocha --reporter spec"
+    "lint": "semistandard --verbose | snazzy",
+    "example": "node example.js",
+    "pretest": "npm run lint && npm run example",
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "letterboxd"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/zaccolley/letterboxd.git"
+    "url": "https://github.com/zaccolley/letterboxd.git"
   },
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
@@ -22,7 +25,22 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "cz-conventional-changelog": "^1.2.0",
     "mocha": "3.1.2",
-    "nock": "8.1.0"
+    "nock": "8.1.0",
+    "semantic-release": "^4.3.5",
+    "semistandard": "^9.1.0",
+    "snazzy": "^5.0.0"
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
