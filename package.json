@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "semistandard --verbose | snazzy",
     "example": "node example.js",
-    "test": "npm run lint && npm run example && ./node_modules/.bin/mocha --reporter spec",
+    "pretest": "npm run lint && npm run example",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
