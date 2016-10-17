@@ -24,7 +24,7 @@ Returns a promise if no callback is provided.
 ```javascript
 var letterboxd = require('letterboxd');
 
-letterboxd('zaccolley')
+letterboxd('rubencordeiro')
   .then(function (items) {
     console.log(items);
   })
