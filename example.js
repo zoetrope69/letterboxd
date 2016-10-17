@@ -1,6 +1,6 @@
 var letterboxd = require('./index');
 
-letterboxd('zaccolley', function(error, items){
+letterboxd('zaccolley', function (error, items) {
   if (error) {
     return console.log(error);
   }
@@ -8,7 +8,7 @@ letterboxd('zaccolley', function(error, items){
   logItems(items);
 });
 
-function logItems(items) {
+function logItems (items) {
   var diaryEntries = items.filter(item => item.type === 'diary');
   var lists = items.filter(item => item.type === 'list');
 

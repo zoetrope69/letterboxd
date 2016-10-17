@@ -1,5 +1,5 @@
 # letterboxd
-[![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard) [![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)  
 
 get public data for letterboxd users
 
@@ -21,10 +21,10 @@ Returns a promise if no callback is provided.
 var letterboxd = require('letterboxd');
 
 letterboxd('zaccolley')
-  .then(function(items) {
+  .then(function (items) {
     console.log(items);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log(error);
   });
 ```
@@ -34,7 +34,7 @@ or
 ```javascript
 var letterboxd = require('letterboxd');
 
-letterboxd('zaccolley', function(error, items){
+letterboxd('zaccolley', function (error, items){
   if (error) {
     return console.log(error);
   }

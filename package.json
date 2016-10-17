@@ -4,7 +4,9 @@
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
-    "test": "node example.js && ./node_modules/.bin/mocha --reporter spec"
+    "lint": "semistandard --verbose | snazzy",
+    "example": "node example.js",
+    "test": "npm run lint && npm run example && ./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [
     "letterboxd"
@@ -23,6 +25,14 @@
   "devDependencies": {
     "chai": "3.5.0",
     "mocha": "3.1.2",
-    "nock": "8.1.0"
+    "nock": "8.1.0",
+    "semistandard": "^9.1.0",
+    "snazzy": "^5.0.0"
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "it"
+    ]
   }
 }
