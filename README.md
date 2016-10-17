@@ -1,5 +1,9 @@
 # letterboxd
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard) [![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)  
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![npm](https://img.shields.io/npm/v/letterboxd.svg)](https://www.npmjs.com/package/letterboxd)
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard) [![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)
+[![Dependancies](https://david-dm.org/zaccolley/letterboxd/status.svg)](https://david-dm.org/zaccolley/letterboxd)
+[![Dev dependancies](https://david-dm.org/zaccolley/letterboxd/dev-status.svg)](https://david-dm.org/zaccolley/letterboxd?type=dev)
 
 get public data for letterboxd users
 
