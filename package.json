@@ -30,7 +30,7 @@
     "nock": "9.0.2",
     "semantic-release": "^6.3.2",
     "semistandard": "^9.1.0",
-    "snazzy": "^5.0.0"
+    "snazzy": "^6.0.0"
   },
   "semistandard": {
     "globals": [
