@@ -1,4 +1,6 @@
 # letterboxd
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zaccolley/letterboxd.svg)](https://greenkeeper.io/)
 [![npm](https://img.shields.io/npm/v/letterboxd.svg)](https://www.npmjs.com/package/letterboxd)
 [![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)
 [![Dependancies](https://david-dm.org/zaccolley/letterboxd/status.svg)](https://david-dm.org/zaccolley/letterboxd)
