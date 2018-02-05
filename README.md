@@ -64,6 +64,8 @@ items of note for the list type:
 + `films`: films in the list, capped at 10
 + `totalFilms`: the total amount of films in the list, only 10 films are given here.
 
+You can use this [Glitch app](https://glitch.com) to test out what data comes back: https://letterboxd.glitch.me/zaccolley
+
 ```javascript
 [
   {
