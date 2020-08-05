@@ -3,10 +3,11 @@
   "description": "get public diary data for letterboxd users",
   "main": "index.js",
   "scripts": {
-    "lint": "semistandard --verbose | snazzy",
-    "example": "node example.js",
-    "pretest": "npm run lint && npm run example",
-    "test": "./node_modules/.bin/mocha --reporter spec",
+    "prettier": "prettier --write .",
+    "example": "node test/example.js",
+    "pretest": "npm run prettier && npm run example",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
@@ -19,23 +20,15 @@
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.4.6",
     "cheerio": "^1.0.0-rc.2",
-    "request": "^2.72.0"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "chai": "4.1.0",
     "cz-conventional-changelog": "^2.0.0",
-    "mocha": "3.3.0",
-    "nock": "9.0.9",
+    "jest": "^26.2.2",
+    "nock": "^13.0.3",
     "prettier": "2.0.5",
     "semantic-release": "^6.3.2"
-  },
-  "semistandard": {
-    "globals": [
-      "describe",
-      "it"
-    ]
   },
   "config": {
     "commitizen": {

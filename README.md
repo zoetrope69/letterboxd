@@ -25,29 +25,11 @@ npm install letterboxd --save
 Returns a promise if no callback is provided.
 
 ```javascript
-var letterboxd = require("letterboxd");
+import letterboxd from "letterboxd";
 
 letterboxd("rubencordeiro")
-  .then(function (items) {
-    console.log(items);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-or
-
-```javascript
-var letterboxd = require("letterboxd");
-
-letterboxd("zaccolley", function (error, items) {
-  if (error) {
-    return console.log(error);
-  }
-
-  console.log(items);
-});
+  .then((items) => console.log(items))
+  .catch((error) => console.log(error));
 ```
 
 #### output
@@ -63,8 +45,6 @@ items of note for the list type:
 - `ranked`: shows if it was set to ranked (1, 2, 3, 4).
 - `films`: films in the list, capped at 10
 - `totalFilms`: the total amount of films in the list, only 10 films are given here.
-
-You can use this [Glitch app](https://glitch.com) to test out what data comes back: https://letterboxd.glitch.me/zaccolley
 
 ```javascript
 [
