@@ -1,6 +1,6 @@
-var letterboxd = require('./index');
+var letterboxd = require("./index");
 
-letterboxd('rubencordeiro')
+letterboxd("rubencordeiro")
   .then(function (items) {
     console.log(items);
   })
@@ -8,7 +8,7 @@ letterboxd('rubencordeiro')
     console.log(error);
   });
 
-letterboxd('zaccolley', function (error, items) {
+letterboxd("zaccolley", function (error, items) {
   if (error) {
     return console.log(error);
   }
@@ -16,25 +16,25 @@ letterboxd('zaccolley', function (error, items) {
   logItems(items);
 });
 
-function logItems (items) {
-  var diaryEntries = items.filter(item => item.type === 'diary');
-  var lists = items.filter(item => item.type === 'list');
+function logItems(items) {
+  var diaryEntries = items.filter((item) => item.type === "diary");
+  var lists = items.filter((item) => item.type === "list");
 
-  console.log('');
-  console.log('Amount of diary entries: ' + diaryEntries.length);
-  console.log('Amount of lists: ' + lists.length);
+  console.log("");
+  console.log("Amount of diary entries: " + diaryEntries.length);
+  console.log("Amount of lists: " + lists.length);
 
-  console.log('\nDiary entries:\n');
+  console.log("\nDiary entries:\n");
 
-  diaryEntries.map(diaryEntry => {
-    console.log('  + ' + diaryEntry.film.title + ' (' + diaryEntry.uri + ')');
+  diaryEntries.map((diaryEntry) => {
+    console.log("  + " + diaryEntry.film.title + " (" + diaryEntry.uri + ")");
   });
 
-  console.log('\nLists:\n');
+  console.log("\nLists:\n");
 
-  lists.map(list => {
-    console.log('  + ' + list.title + ' (' + list.uri + ')');
+  lists.map((list) => {
+    console.log("  + " + list.title + " (" + list.uri + ")");
   });
 
-  console.log('');
+  console.log("");
 }
