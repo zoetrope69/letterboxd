@@ -25,29 +25,11 @@ npm install letterboxd --save
 Returns a promise if no callback is provided.
 
 ```javascript
-var letterboxd = require('letterboxd');
+import letterboxd from "letterboxd";
 
-letterboxd('rubencordeiro')
-  .then(function (items) {
-    console.log(items);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-```
-
-or
-
-```javascript
-var letterboxd = require('letterboxd');
-
-letterboxd('zaccolley', function (error, items){
-  if (error) {
-    return console.log(error);
-  }
-
-  console.log(items);
-});
+letterboxd("rubencordeiro")
+  .then((items) => console.log(items))
+  .catch((error) => console.log(error));
 ```
 
 #### output
@@ -60,46 +42,51 @@ there are two types of items: diary entries and lists.
 
 items of note for the list type:
 
-+ `ranked`: shows if it was set to ranked (1, 2, 3, 4).
-+ `films`: films in the list, capped at 10
-+ `totalFilms`: the total amount of films in the list, only 10 films are given here.
-
-You can use this [Glitch app](https://glitch.com) to test out what data comes back: https://letterboxd.glitch.me/zaccolley
+- `ranked`: shows if it was set to ranked (1, 2, 3, 4).
+- `films`: films in the list, capped at 10
+- `totalFilms`: the total amount of films in the list, only 10 films are given here.
 
 ```javascript
 [
   {
-    type: 'diary',
+    type: "diary",
     film: {
-      title: 'Zootopia',
-      year: '2016',
-      image: { tiny: '...', small: '...', medium: '...', large: '...' }
+      title: "Zootopia",
+      year: "2016",
+      image: { tiny: "...", small: "...", medium: "...", large: "..." },
     },
-    rating: { text: '★★★★', score: 4 },
-    review: 'proper cute, funny and interesting through out. ...',
+    rating: { text: "★★★★", score: 4 },
+    review: "proper cute, funny and interesting through out. ...",
     spoilers: false,
+    isRewatch: false,
     date: { watched: 1463702400000, published: 1463784779000 },
-    uri: 'https://letterboxd.com/zaccolley/film/zootopia/'
+    uri: "https://letterboxd.com/zaccolley/film/zootopia/",
   },
   //...
   {
-    type: 'list',
+    type: "list",
     date: {
-      published: 1473470608000
+      published: 1473470608000,
     },
-    title: 'All The Toy Stories',
-    description: 'I fucking love these films lol',
+    title: "All The Toy Stories",
+    description: "I fucking love these films lol",
     ranked: false,
     films: [
-      { title: 'Toy Story', uri: 'https://letterboxd.com/film/toy-story/' },
-      { title: 'Toy Story 2', uri: 'https://letterboxd.com/film/toy-story-2/' },
-      { title: 'Toy Story 3', uri: 'https://letterboxd.com/film/toy-story-3/' },
-      { title: 'Toy Story That Time Forgot', uri: 'https://letterboxd.com/film/toy-story-that-time-forgot/' },
-      { title: 'Toy Story of Terror!', uri: 'https://letterboxd.com/film/toy-story-of-terror/' }
+      { title: "Toy Story", uri: "https://letterboxd.com/film/toy-story/" },
+      { title: "Toy Story 2", uri: "https://letterboxd.com/film/toy-story-2/" },
+      { title: "Toy Story 3", uri: "https://letterboxd.com/film/toy-story-3/" },
+      {
+        title: "Toy Story That Time Forgot",
+        uri: "https://letterboxd.com/film/toy-story-that-time-forgot/",
+      },
+      {
+        title: "Toy Story of Terror!",
+        uri: "https://letterboxd.com/film/toy-story-of-terror/",
+      },
     ],
     totalFilms: 56,
-    uri: 'https://letterboxd.com/zaccolley/list/tiff-2016/'
+    uri: "https://letterboxd.com/zaccolley/list/tiff-2016/",
   },
   //...
-]
+];
 ```
