@@ -20,16 +20,16 @@
   "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
+    "cheerio": "^1.0.0-rc.3",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^2.0.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "dot-prop": ">=5.1.1",
     "jest": "^26.2.2",
     "nock": "^13.0.3",
     "prettier": "2.0.5",
-    "semantic-release": "^17.1.1",
-    "dot-prop": ">=5.1.1"
+    "semantic-release": "^17.1.1"
   },
   "config": {
     "commitizen": {
