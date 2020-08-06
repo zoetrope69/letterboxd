@@ -7,8 +7,7 @@
     "example": "node test/example.js",
     "pretest": "npm run prettier && npm run example",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "letterboxd"
