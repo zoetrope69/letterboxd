@@ -5,8 +5,6 @@
 [![Dependancies](https://david-dm.org/zaccolley/letterboxd/status.svg)](https://david-dm.org/zaccolley/letterboxd)
 [![Dev dependancies](https://david-dm.org/zaccolley/letterboxd/dev-status.svg)](https://david-dm.org/zaccolley/letterboxd?type=dev)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard)
-[![Known Vulnerabilities](https://snyk.io/test/github/zaccolley/letterboxd/badge.svg)](https://snyk.io/test/github/zaccolley/letterboxd)
 
 get public data for letterboxd users
 
