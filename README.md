@@ -1,7 +1,7 @@
 # letterboxd
 
 [![npm](https://img.shields.io/npm/v/letterboxd.svg)](https://www.npmjs.com/package/letterboxd)
-[![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=master)](https://travis-ci.org/zaccolley/letterboxd)
+[![Build Status](https://travis-ci.org/zaccolley/letterboxd.svg?branch=main)](https://travis-ci.org/zaccolley/letterboxd)
 [![Dependancies](https://david-dm.org/zaccolley/letterboxd/status.svg)](https://david-dm.org/zaccolley/letterboxd)
 [![Dev dependancies](https://david-dm.org/zaccolley/letterboxd/dev-status.svg)](https://david-dm.org/zaccolley/letterboxd?type=dev)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
