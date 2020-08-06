@@ -5,66 +5,91 @@ const expectedItems = [
   {
     type: "diary",
     film: {
-      title: "Steve Jobs",
-      year: "2015",
+      title: "Eurovision Song Contest: The Story of Fire Saga",
+      year: "2020",
       image: {
         large:
-          "https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-230-0-345-crop.jpg?k=ab7aba0910",
+          "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-230-0-345-crop.jpg?k=4fd68790b9",
         medium:
-          "https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-150-0-225-crop.jpg?k=ab7aba0910",
+          "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-150-0-225-crop.jpg?k=4fd68790b9",
         small:
-          "https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-70-0-105-crop.jpg?k=ab7aba0910",
+          "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-70-0-105-crop.jpg?k=4fd68790b9",
         tiny:
-          "https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-35-0-50-crop.jpg?k=ab7aba0910",
+          "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-35-0-50-crop.jpg?k=4fd68790b9",
       },
     },
-    rating: { text: "None", score: -1 },
-    review: "",
+    rating: { score: 3, text: "★★★" },
+    review:
+      "it's too long and not gay enough but this film is bad and campy so p much is Eurovision.",
     spoilers: false,
-    date: { watched: 1475971200000, published: 1476047737000 },
-    uri: "https://letterboxd.com/zaccolley/film/steve-jobs/",
-  },
-  {
-    type: "diary",
-    film: {
-      title: "Sausage Party",
-      year: "2016",
-      image: {
-        large:
-          "https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-230-0-345-crop.jpg?k=6dff82ac2b",
-        medium:
-          "https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-150-0-225-crop.jpg?k=6dff82ac2b",
-        small:
-          "https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-70-0-105-crop.jpg?k=6dff82ac2b",
-        tiny:
-          "https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-35-0-50-crop.jpg?k=6dff82ac2b",
-      },
+    isRewatch: false,
+    date: {
+      published: 1593351708000,
+      watched: 1593302400000,
     },
-    rating: { text: "★", score: 1 },
-    review: "piece of shit",
-    spoilers: true,
-    date: { watched: 1472860800000, published: 1472923610000 },
-    uri: "https://letterboxd.com/zaccolley/film/sausage-party/",
+    uri:
+      "https://letterboxd.com/zaccolley/film/eurovision-song-contest-the-story-of-fire-saga/",
   },
   {
     type: "diary",
     date: {
-      published: 1474076102000,
-      watched: 1473984000000,
+      published: 1591795881000,
+      watched: 1591401600000,
     },
     film: {
-      image: {},
-      title: "LBJ",
-      year: "2016",
+      title: "Crip Camp: A Disability Revolution",
+      year: "2020",
+      image: {
+        tiny:
+          "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-35-0-50-crop.jpg?k=28ec3b2c7e",
+        small:
+          "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-70-0-105-crop.jpg?k=28ec3b2c7e",
+        medium:
+          "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-150-0-225-crop.jpg?k=28ec3b2c7e",
+        large:
+          "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-230-0-345-crop.jpg?k=28ec3b2c7e",
+      },
     },
     rating: {
-      score: 2.5,
-      text: "★★½",
+      text: "★★★★",
+      score: 4,
     },
     review:
-      "There are several reasons why Rob Reiner might not seem like the right guy to direct a movie about LBJ. For one thing, the filmmaker has always been an outspoken liberal. For another, it’s hard to imagine that a man whose recent output includes “Flipped” and “The Bucket List” has any interest in making a movie about real people, let alone someone so famous. (We’ll grant him “Being Charlie,” the intensely personal drama he made about his son earlier this year.)\nBut the most pressing reason why Reiner doesn’t seem like a natural fit for the subject is that we live in a world where actual politics are starting to feel more like the movies with every passing day, and this may not the best time for someone with such cartoonish sensibilities to revisit the beltway. After all, the climactic speech that Michael Douglas delivered at the end of Reiner’s “The American President” is more urgent now than ever — once upon a time, “We have serious problems to solve and we need serious people to solve them” was the rousing stuff of a sweet romantic comedy, and not something that we desperately need to remind 50% of the people in this country.\nREAD THE FULL REVIEW ON INDIEWIRE",
+      "learnt more about civil rights movement, and there's a disabled drag queen. sick doc",
     spoilers: false,
-    uri: "https://letterboxd.com/zaccolley/film/lbj-2016/",
+    isRewatch: true,
+    uri:
+      "https://letterboxd.com/zaccolley/film/crip-camp-a-disability-revolution/",
+  },
+  {
+    type: "diary",
+    date: {
+      published: 1589837696000,
+      watched: 1589673600000,
+    },
+    film: {
+      title: "Con Air",
+      year: "1997",
+      image: {
+        tiny:
+          "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-35-0-50-crop.jpg?k=4701de9753",
+        small:
+          "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-70-0-105-crop.jpg?k=4701de9753",
+        medium:
+          "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-150-0-225-crop.jpg?k=4701de9753",
+        large:
+          "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-230-0-345-crop.jpg?k=4701de9753",
+      },
+    },
+    rating: {
+      text: "★★★½",
+      score: 3.5,
+    },
+    review:
+      "glad to see diabetic representation, sweaty and not doing much for the whole film",
+    spoilers: true,
+    isRewatch: false,
+    uri: "https://letterboxd.com/zaccolley/film/con-air/",
   },
   {
     type: "list",

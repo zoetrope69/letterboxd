@@ -1,62 +1,64 @@
-<?xml version='1.0' encoding='utf-8'?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/"
-     xmlns:letterboxd="http://letterboxd.com">
-    <channel>
-        <title>Letterboxd - Zac Colley</title>
-        <link>https://letterboxd.com/zaccolley/</link>
-        <description>Letterboxd - Zac Colley</description>
-        <atom:link rel="self" href="https://letterboxd.com/zaccolley/rss/" type="application/rss+xml"/>
-
-        <item>
-            <title>Steve Jobs, 2015</title>
-            <link>https://letterboxd.com/zaccolley/film/steve-jobs/</link>
-            <guid isPermaLink="false">letterboxd-watch-17153978</guid>
-            <pubDate>Mon, 10 Oct 2016 10:15:37 +1300</pubDate>
-            <letterboxd:watchedDate>2016-10-09</letterboxd:watchedDate>
-            <description>
-                <![CDATA[ <p><img src="https://a.ltrbxd.com/resized/sm/upload/ql/1g/sz/63/7SUaf2UgoY0ZRGbQtRlfDkLDBCb-0-150-0-225-crop.jpg?k=ab7aba0910"/></p> <p>Watched on Sunday October 9, 2016.</p> ]]></description>
-            <dc:creator>Zac Colley</dc:creator>
-        </item>
-        <item>
-          <title>Sausage Party, 2016 - ★ (contains spoilers)</title>
-          <link>https://letterboxd.com/zaccolley/film/sausage-party/</link>
-          <guid isPermaLink="false">letterboxd-review-16423369</guid>
-          <pubDate>Sun, 4 Sep 2016 05:26:50 +1200</pubDate>
-          <letterboxd:watchedDate>2016-09-03</letterboxd:watchedDate>
-          <description>
-              <![CDATA[ <p><img src="https://a.ltrbxd.com/resized/sm/upload/h4/fy/g1/ks/jDeDRLEa8JqB3xmKVy6q3bkmDt6-0-150-0-225-crop.jpg?k=6dff82ac2b"/></p> <p><em>This review may contain spoilers.</em></p> <p>piece of shit</p> ]]></description>
-          <dc:creator>Zac Colley</dc:creator>
-        </item>
-        <item>
-          <title>LBJ, 2016 - ★★½</title>
-          <link>https://letterboxd.com/zaccolley/film/lbj-2016/</link>
-          <guid isPermaLink="false">letterboxd-review-16693245</guid>
-          <pubDate>Sat, 17 Sep 2016 13:35:02 +1200</pubDate>
-          <letterboxd:watchedDate>2016-09-16</letterboxd:watchedDate>
-          <description>
-            <![CDATA[ <p>There are several reasons why Rob Reiner might not seem like the right guy to direct a movie about LBJ. For one thing, the filmmaker has always been an outspoken liberal. For another, it’s hard to imagine that a man whose recent output includes “Flipped” and “The Bucket List” has any interest in making a movie about real people, let alone someone so famous. (We’ll grant him “Being Charlie,” the intensely personal drama he made about his son earlier this year.)</p> <p>But the most pressing reason why Reiner doesn’t seem like a natural fit for the subject is that we live in a world where actual politics are starting to feel more like the movies with every passing day, and this may not the best time for someone with such cartoonish sensibilities to revisit the beltway. After all, the climactic speech that Michael Douglas delivered at the end of Reiner’s “The American President” is more urgent now than ever — once upon a time, “We have serious problems to solve and we need serious people to solve them” was the rousing stuff of a sweet romantic comedy, and not something that we desperately need to remind 50% of the people in this country.</p> <p><a href="http://www.indiewire.com/2016/09/lbj-woody-harrelson-rob-reiner-tiff-2016-1201727423/" rel="nofollow">READ THE FULL REVIEW ON INDIEWIRE</a></p> ]]>
-          </description>
-          <dc:creator>Zac Collet</dc:creator>
-        </item>
-	      <item>
-          <title>TIFF 2016</title>
-          <link>https://letterboxd.com/zaccolley/list/tiff-2016/</link>
-          <guid isPermaLink="false">letterboxd-list-1139344</guid>
-          <pubDate>Sat, 10 Sep 2016 13:23:28 +1200</pubDate>
-          <description>
-            <![CDATA[ <p>TIFF is very nice</p> <ol> <li> <a href="https://letterboxd.com/film/moonlight-2016/">Moonlight</a> </li> <li> <a href="https://letterboxd.com/film/jackie-2016/">Jackie</a> </li> <li> <a href="https://letterboxd.com/film/toni-erdmann/">Toni Erdmann</a> </li> <li> <a href="https://letterboxd.com/film/personal-shopper/">Personal Shopper</a> </li> <li> <a href="https://letterboxd.com/film/la-la-land/">La La Land</a> </li> <li> <a href="https://letterboxd.com/film/the-handmaiden/">The Handmaiden</a> </li> <li> <a href="https://letterboxd.com/film/manchester-by-the-sea/">Manchester by the Sea</a> </li> <li> <a href="https://letterboxd.com/film/american-honey/">American Honey</a> </li> <li> <a href="https://letterboxd.com/film/the-edge-of-seventeen/">The Edge of Seventeen</a> </li> <li> <a href="https://letterboxd.com/film/una-2016/">Una</a> </li> </ol> <p>...plus 46 more. <a href="https://letterboxd.com/davidehrlich/list/tiff-2016/">View the full list on Letterboxd</a>.</p> ]]>
-          </description>
-          <dc:creator>Zac Colley</dc:creator>
-        </item>
-	      <item>
-          <title>Fake List</title>
-          <link>https://letterboxd.com/zaccolley/list/fake-list/</link>
-          <guid isPermaLink="false">letterboxd-list-1234567</guid>
-          <pubDate>Sat, 18 Sep 2016 13:23:28 +1200</pubDate>
-          <description>
-            <![CDATA[ <ul> <li> <a href="https://letterboxd.com/film/fake-2016/">Fake</a> </li> <li> <a href="https://letterboxd.com/film/fake-2-2016/">Fake 2</a> </li> </ul> ]]>
-          </description>
-          <dc:creator>Zac Colley</dc:creator>
-        </item>
-    </channel>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:letterboxd="https://letterboxd.com" version="2.0">
+  <channel>
+    <title>Letterboxd - Zac Colley</title>
+    <link>https://letterboxd.com/zaccolley/</link>
+    <description>Letterboxd - Zac Colley</description>
+    <atom:link rel="self" href="https://letterboxd.com/zaccolley/rss/" type="application/rss+xml" />
+    <item>
+      <title>Eurovision Song Contest: The Story of Fire Saga, 2020 - ★★★</title>
+      <link>https://letterboxd.com/zaccolley/film/eurovision-song-contest-the-story-of-fire-saga/</link>
+      <guid isPermaLink="false">letterboxd-review-112051037</guid>
+      <pubDate>Mon, 29 Jun 2020 01:41:48 +1200</pubDate>
+      <letterboxd:watchedDate>2020-06-28</letterboxd:watchedDate>
+      <letterboxd:rewatch>No</letterboxd:rewatch>
+      <letterboxd:filmTitle>Eurovision Song Contest: The Story of Fire Saga</letterboxd:filmTitle>
+      <letterboxd:filmYear>2020</letterboxd:filmYear>
+      <letterboxd:memberRating>3.0</letterboxd:memberRating>
+      <description><![CDATA[<p><img src="https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-500-0-750-crop.jpg?k=4fd68790b9"/></p> <p>it's too long and not gay enough but this film is bad and campy so p much is Eurovision.</p>]]></description>
+      <dc:creator>Zac Colley</dc:creator>
+    </item>
+    <item>
+      <title>Crip Camp: A Disability Revolution, 2020 - ★★★★</title>
+      <link>https://letterboxd.com/zaccolley/film/crip-camp-a-disability-revolution/</link>
+      <guid isPermaLink="false">letterboxd-review-109366213</guid>
+      <pubDate>Thu, 11 Jun 2020 01:31:21 +1200</pubDate>
+      <letterboxd:watchedDate>2020-06-06</letterboxd:watchedDate>
+      <letterboxd:rewatch>Yes</letterboxd:rewatch>
+      <letterboxd:filmTitle>Crip Camp: A Disability Revolution</letterboxd:filmTitle>
+      <letterboxd:filmYear>2020</letterboxd:filmYear>
+      <letterboxd:memberRating>4.0</letterboxd:memberRating>
+      <description><![CDATA[<p><img src="https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-500-0-750-crop.jpg?k=28ec3b2c7e"/></p> <p>learnt more about civil rights movement, and there's a disabled drag queen. sick doc</p>]]></description>
+      <dc:creator>Zac Colley</dc:creator>
+    </item>
+    <item>
+      <title>Con Air, 1997 - ★★★½ (contains spoilers)</title>
+      <link>https://letterboxd.com/zaccolley/film/con-air/</link>
+      <guid isPermaLink="false">letterboxd-review-105691230</guid>
+      <pubDate>Tue, 19 May 2020 09:34:56 +1200</pubDate>
+      <letterboxd:watchedDate>2020-05-17</letterboxd:watchedDate>
+      <letterboxd:rewatch>No</letterboxd:rewatch>
+      <letterboxd:filmTitle>Con Air</letterboxd:filmTitle>
+      <letterboxd:filmYear>1997</letterboxd:filmYear>
+      <letterboxd:memberRating>3.5</letterboxd:memberRating>
+      <description><![CDATA[<p><img src="https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-500-0-750-crop.jpg?k=4701de9753"/></p> <p><em>This review may contain spoilers.</em></p> <p>glad to see diabetic representation, sweaty and not doing much for the whole film</p>]]></description>
+      <dc:creator>Zac Colley</dc:creator>
+    </item>
+    <item>
+      <title>TIFF 2016</title>
+      <link>https://letterboxd.com/zaccolley/list/tiff-2016/</link>
+      <guid isPermaLink="false">letterboxd-list-1139344</guid>
+      <pubDate>Sat, 10 Sep 2016 13:23:28 +1200</pubDate>
+      <description><![CDATA[<p>TIFF is very nice</p> <ol> <li> <a href="https://letterboxd.com/film/moonlight-2016/">Moonlight</a> </li> <li> <a href="https://letterboxd.com/film/jackie-2016/">Jackie</a> </li> <li> <a href="https://letterboxd.com/film/toni-erdmann/">Toni Erdmann</a> </li> <li> <a href="https://letterboxd.com/film/personal-shopper/">Personal Shopper</a> </li> <li> <a href="https://letterboxd.com/film/la-la-land/">La La Land</a> </li> <li> <a href="https://letterboxd.com/film/the-handmaiden/">The Handmaiden</a> </li> <li> <a href="https://letterboxd.com/film/manchester-by-the-sea/">Manchester by the Sea</a> </li> <li> <a href="https://letterboxd.com/film/american-honey/">American Honey</a> </li> <li> <a href="https://letterboxd.com/film/the-edge-of-seventeen/">The Edge of Seventeen</a> </li> <li> <a href="https://letterboxd.com/film/una-2016/">Una</a> </li> </ol> <p>...plus 46 more. <a href="https://letterboxd.com/davidehrlich/list/tiff-2016/">View the full list on Letterboxd</a>.</p>]]></description>
+      <dc:creator>Zac Colley</dc:creator>
+    </item>
+    <item>
+      <title>Fake List</title>
+      <link>https://letterboxd.com/zaccolley/list/fake-list/</link>
+      <guid isPermaLink="false">letterboxd-list-1234567</guid>
+      <pubDate>Sat, 18 Sep 2016 13:23:28 +1200</pubDate>
+      <description><![CDATA[<ul> <li> <a href="https://letterboxd.com/film/fake-2016/">Fake</a> </li> <li> <a href="https://letterboxd.com/film/fake-2-2016/">Fake 2</a> </li> </ul>]]></description>
+      <dc:creator>Zac Colley</dc:creator>
+    </item>
+  </channel>
 </rss>

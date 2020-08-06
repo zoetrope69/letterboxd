@@ -58,6 +58,7 @@ items of note for the list type:
     rating: { text: "★★★★", score: 4 },
     review: "proper cute, funny and interesting through out. ...",
     spoilers: false,
+    isRewatch: false,
     date: { watched: 1463702400000, published: 1463784779000 },
     uri: "https://letterboxd.com/zaccolley/film/zootopia/",
   },

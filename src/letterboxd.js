@@ -26,6 +26,18 @@ function getTitleData(element) {
   return element.find("title").text();
 }
 
+function getTitle(element) {
+  return element.find("letterboxd\\:filmTitle").text();
+}
+
+function getYear(element) {
+  return element.find("letterboxd\\:filmYear").text();
+}
+
+function getMemberRating(element) {
+  return element.find("letterboxd\\:memberRating").text();
+}
+
 function getSpoilers(element) {
   const titleData = getTitleData(element);
 
@@ -33,70 +45,34 @@ function getSpoilers(element) {
   return titleData.includes(containsSpoilersString);
 }
 
+function getIsRewatch(element) {
+  const rewatchData = element.find("letterboxd\\:rewatch").text();
+  return rewatchData === "Yes";
+}
+
 function getRating(element) {
-  const titleData = getTitleData(element);
-  const spoilers = getSpoilers(element);
+  const memberRating = getMemberRating(element).toString();
 
-  const rating = {
-    text: "None",
+  const rating = {};
+
+  const scoreToTextMap = {
+    "-1.0": "None",
+    "0.5": "½",
+    "1.0": "★",
+    "1.5": "★½",
+    "2.0": "★★",
+    "2.5": "★★½",
+    "3.0": "★★★",
+    "3.5": "★★★½",
+    "4.0": "★★★★",
+    "4.5": "★★★★½",
+    "5.0": "★★★★★",
   };
 
-  const ratingStringPosition = titleData.lastIndexOf("-");
-
-  // if there is no '-' character there is no rating
-  if (ratingStringPosition !== -1) {
-    let endPosition = titleData.length;
-    if (spoilers) {
-      const containsSpoilersString = "(contains spoilers)";
-      endPosition = endPosition - containsSpoilersString.length - 1;
-    }
-    rating.text = titleData.substring(ratingStringPosition + 2, endPosition);
-  }
-
-  // give a number score for the text that matches
-  const score2Text = {
-    None: -1.0,
-    "½": 0.5,
-    "★": 1.0,
-    "★½": 1.5,
-    "★★": 2.0,
-    "★★½": 2.5,
-    "★★★": 3.0,
-    "★★★½": 3.5,
-    "★★★★": 4.0,
-    "★★★★½": 4.5,
-    "★★★★★": 5.0,
-  };
-  rating.score = score2Text[rating.text];
+  rating.text = scoreToTextMap[memberRating];
+  rating.score = parseFloat(memberRating, 10);
 
   return rating;
-}
-
-function getTitleYearData(element) {
-  const titleData = getTitleData(element);
-  const rating = getRating(element);
-  const ratingStringPosition = titleData.lastIndexOf("-");
-
-  // if there is no rating titleAndYear is the whole string
-  if (typeof rating.score === "undefined" || rating.score === -1) {
-    return titleData;
-  } else {
-    return titleData.substring(0, ratingStringPosition - 1);
-  }
-}
-
-function getTitle(element) {
-  const titleData = getTitleData(element);
-  const titleAndYear = getTitleYearData(element);
-  const lastComma = titleAndYear.lastIndexOf(",");
-  return titleData.substring(0, lastComma);
-}
-
-function getYear(element) {
-  const titleData = getTitleData(element);
-  const titleAndYear = getTitleYearData(element);
-  const lastComma = titleAndYear.lastIndexOf(",");
-  return titleData.substring(lastComma + 2, titleAndYear.length);
 }
 
 function getImage(element) {
@@ -111,11 +87,12 @@ function getImage(element) {
     return {};
   }
 
+  const originalImageCropRegex = /-0-.*-crop/;
   return {
-    tiny: image.replace("-0-150-0-225-crop", "-0-35-0-50-crop"),
-    small: image.replace("-0-150-0-225-crop", "-0-70-0-105-crop"),
-    medium: image,
-    large: image.replace("-0-150-0-225-crop", "-0-230-0-345-crop"),
+    tiny: image.replace(originalImageCropRegex, "-0-35-0-50-crop"),
+    small: image.replace(originalImageCropRegex, "-0-70-0-105-crop"),
+    medium: image.replace(originalImageCropRegex, "-0-150-0-225-crop"),
+    large: image.replace(originalImageCropRegex, "-0-230-0-345-crop"),
   };
 }
 
@@ -277,6 +254,7 @@ function processItem(element) {
     rating: getRating(element),
     review: getReview(element),
     spoilers: getSpoilers(element),
+    isRewatch: getIsRewatch(element),
     uri: getUri(element),
   };
 }
