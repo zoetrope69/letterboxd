@@ -23,7 +23,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "3.2.0",
+    "cz-conventional-changelog": "3.3.0",
     "dot-prop": "5.2.0",
     "jest": "26.2.2",
     "nock": "13.0.3",
