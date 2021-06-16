@@ -28,7 +28,7 @@
     "jest": "26.2.2",
     "nock": "13.0.3",
     "prettier": "2.3.1",
-    "semantic-release": "17.4.3"
+    "semantic-release": "17.4.4"
   },
   "config": {
     "commitizen": {
