@@ -14,8 +14,7 @@ const expectedItems = [
           "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-150-0-225-crop.jpg?k=4fd68790b9",
         small:
           "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-70-0-105-crop.jpg?k=4fd68790b9",
-        tiny:
-          "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-35-0-50-crop.jpg?k=4fd68790b9",
+        tiny: "https://a.ltrbxd.com/resized/film-poster/4/6/0/8/1/3/460813-eurovision-song-contest-the-story-of-fire-saga-0-35-0-50-crop.jpg?k=4fd68790b9",
       },
     },
     rating: { score: 3, text: "★★★" },
@@ -27,8 +26,7 @@ const expectedItems = [
       published: 1593351708000,
       watched: 1593302400000,
     },
-    uri:
-      "https://letterboxd.com/zaccolley/film/eurovision-song-contest-the-story-of-fire-saga/",
+    uri: "https://letterboxd.com/zaccolley/film/eurovision-song-contest-the-story-of-fire-saga/",
   },
   {
     type: "diary",
@@ -40,8 +38,7 @@ const expectedItems = [
       title: "Crip Camp: A Disability Revolution",
       year: "2020",
       image: {
-        tiny:
-          "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-35-0-50-crop.jpg?k=28ec3b2c7e",
+        tiny: "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-35-0-50-crop.jpg?k=28ec3b2c7e",
         small:
           "https://a.ltrbxd.com/resized/film-poster/5/7/9/2/1/8/579218-crip-camp-a-disability-revolution-0-70-0-105-crop.jpg?k=28ec3b2c7e",
         medium:
@@ -58,8 +55,7 @@ const expectedItems = [
       "learnt more about civil rights movement, and there's a disabled drag queen. sick doc",
     spoilers: false,
     isRewatch: true,
-    uri:
-      "https://letterboxd.com/zaccolley/film/crip-camp-a-disability-revolution/",
+    uri: "https://letterboxd.com/zaccolley/film/crip-camp-a-disability-revolution/",
   },
   {
     type: "diary",
@@ -71,8 +67,7 @@ const expectedItems = [
       title: "Con Air",
       year: "1997",
       image: {
-        tiny:
-          "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-35-0-50-crop.jpg?k=4701de9753",
+        tiny: "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-35-0-50-crop.jpg?k=4701de9753",
         small:
           "https://a.ltrbxd.com/resized/film-poster/5/0/8/4/5/50845-con-air-0-70-0-105-crop.jpg?k=4701de9753",
         medium:
