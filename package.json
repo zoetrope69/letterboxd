@@ -23,16 +23,10 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "3.3.0",
     "jest": "27.1.0",
     "nock": "13.1.3",
     "prettier": "2.3.2",
     "semantic-release": "17.4.7"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "release": {
     "branches": [
