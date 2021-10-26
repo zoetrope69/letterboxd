@@ -14,9 +14,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zaccolley/letterboxd.git"
+    "url": "https://github.com/zactopus/letterboxd.git"
   },
-  "author": "Zac Colley <hi@zaccolley.com> (http://zaccolley.com/)",
+  "author": "zac <hi@zaccolley.com> (http://zac.land/)",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
