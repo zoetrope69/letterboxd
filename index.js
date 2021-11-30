@@ -1,3 +1,3 @@
-const letterboxd = require("./src/letterboxd");
+import letterboxd from "./src/letterboxd.js";
 
-module.exports = letterboxd;
+export default letterboxd;

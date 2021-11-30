@@ -1,5 +1,5 @@
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
+import fetch from "node-fetch";
+import cheerio from "cheerio";
 
 function isListItem(element) {
   // if the list path is in the url
@@ -301,4 +301,4 @@ function letterboxd(username) {
   return getDiaryData(username);
 }
 
-module.exports = letterboxd;
+export default letterboxd;

@@ -1,4 +1,5 @@
-const letterboxd = require("../src/letterboxd");
+/* eslint-disable no-console */
+import letterboxd from "../index.js";
 
 letterboxd("zaccolley")
   .then((items) => logItems(items))

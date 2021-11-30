@@ -1,5 +1,11 @@
-const path = require("path");
-const nock = require("nock");
+import path from "path";
+import { fileURLToPath } from "url";
+
+import nock from "nock";
+
+import letterboxd from "../index.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const expectedItems = [
   {
@@ -149,8 +155,6 @@ const expectedItems = [
     uri: "https://letterboxd.com/zaccolley/list/fake-list/",
   },
 ];
-
-const letterboxd = require("../src/letterboxd.js");
 
 const BASE_URL = "https://letterboxd.com";
 
