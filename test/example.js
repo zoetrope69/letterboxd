@@ -1,6 +1,6 @@
 const letterboxd = require("../src/letterboxd");
 
-letterboxd("rubencordeiro")
+letterboxd("zaccolley")
   .then((items) => logItems(items))
   .catch((error) => console.log(error));
 
