@@ -37,7 +37,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "jest": "27.4.2",
     "nock": "13.2.1",
-    "prettier": "2.5.0",
+    "prettier": "2.5.1",
     "semantic-release": "18.0.1"
   },
   "release": {
