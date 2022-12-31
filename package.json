@@ -36,7 +36,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "jest": "27.5.1",
-    "nock": "13.2.4",
+    "nock": "13.2.9",
     "prettier": "2.5.1",
     "semantic-release": "19.0.5"
   },
