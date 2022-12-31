@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import letterboxd from "../index.js";
 
-letterboxd("zaccolley")
+letterboxd("zoetrope69")
   .then((items) => logItems(items))
   .catch((error) => console.log(error));
 
