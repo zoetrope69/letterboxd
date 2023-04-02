@@ -16,7 +16,7 @@ function getPublishedDate(element): number{
   return +new Date(element.find("pubDate").text());
 }
 
-function getWatchedDate(element) {
+function getWatchedDate(element): number{
   return +new Date(element.find("letterboxd\\:watchedDate").text());
 }
 
@@ -85,7 +85,15 @@ function getRating(element) {
   return rating;
 }
 
-function getImage(element) {
+const getImageSchema = z.object({
+  tiny: z.string(),
+  small: z.string(),
+  medium: z.string(),
+  large: z.string(),
+});
+type Image = z.infer<typeof getImageSchema>;
+
+function getImage(element): Image {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -106,7 +114,7 @@ function getImage(element) {
   };
 }
 
-function getReview(element) {
+function getReview(element): string {
   const description = element.find("description").text();
 
   const $ = cheerio.load(description);
@@ -142,7 +150,14 @@ function getReview(element) {
   return review;
 }
 
-function getListFilms(element) {
+const listFilms = z.object({
+    title: z.string(),
+    uri: z.string(),
+  })
+
+type ListFilms = z.infer<typeof listFilms>;
+
+function getListFilms(element): ListFilms[]{
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -156,7 +171,7 @@ function getListFilms(element) {
   return films;
 }
 
-function getListDescription(element) {
+function getListDescription(element): string {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -181,7 +196,7 @@ function getListDescription(element) {
   return result;
 }
 
-function getListTotalFilms(element) {
+function getListTotalFilms(element): number {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -222,7 +237,7 @@ function getListTotalFilms(element) {
   return result;
 }
 
-function isListRanked(element) {
+function isListRanked(element): boolean {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -230,7 +245,40 @@ function isListRanked(element) {
   return isOrderedListPresent;
 }
 
-function processItem(element) {
+const processedItem = z.object({
+  type: z.literal("list").or(z.literal("diary")),
+  date: z.object({
+    published: z.number(),
+    watched: z.number().optional(),
+  }),
+  title: z.string(),
+  description: z.string(),
+  ranked: z.boolean(),
+  films: z.array(
+    z.object({
+      title: z.string(),
+      uri: z.string(),
+    })
+  ).optional(),
+  totalFilms: z.number().optional(),
+  uri: z.string(),
+  film: z.object({
+    title: z.string(),
+    year: z.string().optional(),
+    image: getImageSchema.optional(),
+  }).optional(),
+  rating: z.object({
+    text: z.string(),
+    score: z.number(),
+  }).optional(),
+  review: z.string().optional(),
+  spoilers: z.boolean().optional(),
+  isRewatch: z.boolean().optional()
+});
+
+type ProcessedItem = z.infer<typeof processedItem>;
+
+function processItem(element): ProcessedItem {
   // there are two types of items: lists and diary entries
 
   if (isListItem(element)) {
@@ -269,11 +317,11 @@ function processItem(element) {
   };
 }
 
-function invalidUsername(username) {
+function invalidUsername(username: string): boolean{
   return !username || username.trim().length <= 0;
 }
 
-function getDiaryData(username) {
+function getDiaryData(username: string) {
   const uri = `https://letterboxd.com/${username}/rss/`;
 
   return fetch(uri)
