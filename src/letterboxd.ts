@@ -57,7 +57,7 @@ const ratingSchema = z.object({
   score: z.number(),
 });
 
-type Rating = z.infer<typeof ratingSchema>;
+export type Rating = z.infer<typeof ratingSchema>;
 
 
 function getRating(element) {
@@ -91,7 +91,7 @@ const getImageSchema = z.object({
   medium: z.string(),
   large: z.string(),
 });
-type Image = z.infer<typeof getImageSchema>;
+export type Image = z.infer<typeof getImageSchema>;
 
 function getImage(element): Image {
   const description = element.find("description").text();
@@ -155,7 +155,7 @@ const listFilms = z.object({
     uri: z.string(),
   })
 
-type ListFilms = z.infer<typeof listFilms>;
+export type ListFilms = z.infer<typeof listFilms>;
 
 function getListFilms(element): ListFilms[]{
   const description = element.find("description").text();
@@ -276,13 +276,11 @@ const processedItem = z.object({
   isRewatch: z.boolean().optional()
 });
 
-type ProcessedItem = z.infer<typeof processedItem>;
+export type ProcessedItem = z.infer<typeof processedItem>;
 
 function processItem(element): ProcessedItem {
   // there are two types of items: lists and diary entries
-
   if (isListItem(element)) {
-    // return a list
     return {
       type: "list",
       date: {
@@ -321,7 +319,7 @@ function invalidUsername(username: string): boolean{
   return !username || username.trim().length <= 0;
 }
 
-function getDiaryData(username: string) {
+function getDiaryData(username: string): Promise<string[]> {
   const uri = `https://letterboxd.com/${username}/rss/`;
 
   return fetch(uri)
@@ -350,8 +348,7 @@ function getDiaryData(username: string) {
     });
 }
 
-function letterboxd(username) {
-  // check if a valid username has been passed in
+function letterboxd(username: string) {
   if (invalidUsername(username)) {
     return Promise.reject(new Error("No username sent as a parameter"));
   }
