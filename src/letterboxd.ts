@@ -1,7 +1,9 @@
 import fetch from "node-fetch";
 import cheerio from "cheerio";
+import z from "zod"
 
-function isListItem(element) {
+
+function isListItem(element): boolean {
   // if the list path is in the url
   if (getUri(element).includes("/list/")) {
     return true;
@@ -10,7 +12,7 @@ function isListItem(element) {
   return false;
 }
 
-function getPublishedDate(element) {
+function getPublishedDate(element): number{
   return +new Date(element.find("pubDate").text());
 }
 
@@ -22,38 +24,46 @@ function getUri(element) {
   return element.find("link").html();
 }
 
-function getTitleData(element) {
+function getTitleData(element): string {
   return element.find("title").text();
 }
 
-function getTitle(element) {
+function getTitle(element): string{
   return element.find("letterboxd\\:filmTitle").text();
 }
 
-function getYear(element) {
+function getYear(element): string {
   return element.find("letterboxd\\:filmYear").text();
 }
 
-function getMemberRating(element) {
+function getMemberRating(element): string {
   return element.find("letterboxd\\:memberRating").text();
 }
 
-function getSpoilers(element) {
+function getSpoilers(element): boolean{
   const titleData = getTitleData(element);
 
   const containsSpoilersString = "(contains spoilers)";
   return titleData.includes(containsSpoilersString);
 }
 
-function getIsRewatch(element) {
+function getIsRewatch(element): boolean {
   const rewatchData = element.find("letterboxd\\:rewatch").text();
   return rewatchData === "Yes";
 }
 
+const ratingSchema = z.object({
+  text: z.string(),
+  score: z.number(),
+});
+
+type Rating = z.infer<typeof ratingSchema>;
+
+
 function getRating(element) {
   const memberRating = getMemberRating(element).toString();
 
-  const rating = {};
+  const rating: Rating = {};
 
   const scoreToTextMap = {
     "-1.0": "None",
@@ -69,10 +79,8 @@ function getRating(element) {
     "5.0": "★★★★★",
   };
 
-  //@ts-ignore
   rating.text = scoreToTextMap[memberRating];
-  //@ts-ignore
-  rating.score = parseFloat(memberRating, 10);
+  rating.score = parseFloat(memberRating);
 
   return rating;
 }

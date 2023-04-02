@@ -2,13 +2,12 @@
   "name": "letterboxd",
   "description": "get public diary data for letterboxd users",
   "exports": "./index.js",
-  "type": "module",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
     "prettier": "prettier --write .",
-    "example": "node test/example.js",
+    "example": "npx ts-node --esm example.ts",
     "pretest": "npm run example && npm run prettier && npm run lint",
     "test": "npm run test:js",
     "test:js": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
@@ -26,7 +25,8 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
-    "node-fetch": "^2.6.6"
+    "node-fetch": "^2.6.6",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "cross-env": "7.0.3",
