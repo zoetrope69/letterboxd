@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-import letterboxd from "../index.js";
+import letterboxd from "../index";
 
-letterboxd("zoetrope69")
+letterboxd("zeromero")
+//@ts-ignore
   .then((items) => logItems(items))
   .catch((error) => console.log(error));
 
