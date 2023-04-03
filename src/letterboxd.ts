@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import cheerio from "cheerio";
-import z from "zod"
-
+import z from "zod";
 
 function isListItem(element): boolean {
   // if the list path is in the url
@@ -12,11 +11,11 @@ function isListItem(element): boolean {
   return false;
 }
 
-function getPublishedDate(element): number{
+function getPublishedDate(element): number {
   return +new Date(element.find("pubDate").text());
 }
 
-function getWatchedDate(element): number{
+function getWatchedDate(element): number {
   return +new Date(element.find("letterboxd\\:watchedDate").text());
 }
 
@@ -28,7 +27,7 @@ function getTitleData(element): string {
   return element.find("title").text();
 }
 
-function getTitle(element): string{
+function getTitle(element): string {
   return element.find("letterboxd\\:filmTitle").text();
 }
 
@@ -40,7 +39,7 @@ function getMemberRating(element): string {
   return element.find("letterboxd\\:memberRating").text();
 }
 
-function getSpoilers(element): boolean{
+function getSpoilers(element): boolean {
   const titleData = getTitleData(element);
 
   const containsSpoilersString = "(contains spoilers)";
@@ -58,7 +57,6 @@ const ratingSchema = z.object({
 });
 
 export type Rating = z.infer<typeof ratingSchema>;
-
 
 function getRating(element) {
   const memberRating = getMemberRating(element).toString();
@@ -151,13 +149,13 @@ function getReview(element): string {
 }
 
 const listFilms = z.object({
-    title: z.string(),
-    uri: z.string(),
-  })
+  title: z.string(),
+  uri: z.string(),
+});
 
 export type ListFilms = z.infer<typeof listFilms>;
 
-function getListFilms(element): ListFilms[]{
+function getListFilms(element): ListFilms[] {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
 
@@ -254,26 +252,32 @@ const processedItem = z.object({
   title: z.string(),
   description: z.string(),
   ranked: z.boolean(),
-  films: z.array(
-    z.object({
-      title: z.string(),
-      uri: z.string(),
-    })
-  ).optional(),
+  films: z
+    .array(
+      z.object({
+        title: z.string(),
+        uri: z.string(),
+      })
+    )
+    .optional(),
   totalFilms: z.number().optional(),
   uri: z.string(),
-  film: z.object({
-    title: z.string(),
-    year: z.string().optional(),
-    image: getImageSchema.optional(),
-  }).optional(),
-  rating: z.object({
-    text: z.string(),
-    score: z.number(),
-  }).optional(),
+  film: z
+    .object({
+      title: z.string(),
+      year: z.string().optional(),
+      image: getImageSchema.optional(),
+    })
+    .optional(),
+  rating: z
+    .object({
+      text: z.string(),
+      score: z.number(),
+    })
+    .optional(),
   review: z.string().optional(),
   spoilers: z.boolean().optional(),
-  isRewatch: z.boolean().optional()
+  isRewatch: z.boolean().optional(),
 });
 
 export type ProcessedItem = z.infer<typeof processedItem>;
@@ -315,7 +319,7 @@ function processItem(element): ProcessedItem {
   };
 }
 
-function invalidUsername(username: string): boolean{
+function invalidUsername(username: string): boolean {
   return !username || username.trim().length <= 0;
 }
 
@@ -348,7 +352,7 @@ function getDiaryData(username: string): Promise<string[]> {
     });
 }
 
-function letterboxd(username: string) {
+function letterboxd(username: string): Promise<string[]> {
   if (invalidUsername(username)) {
     return Promise.reject(new Error("No username sent as a parameter"));
   }

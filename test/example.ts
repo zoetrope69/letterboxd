@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import letterboxd from "../index";
 
-
 letterboxd("zeromero")
   //@ts-ignore
   .then((items) => logItems(items))
