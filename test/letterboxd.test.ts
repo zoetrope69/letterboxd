@@ -1,10 +1,9 @@
 import path from "path";
 import { fileURLToPath } from "url";
-
 import nock from "nock";
-
 import letterboxd from "../index.js";
 
+//@ts-ignore
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const expectedItems = [
