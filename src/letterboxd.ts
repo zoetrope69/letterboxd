@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import cheerio from "cheerio";
 import z from "zod";
+import {load} from "cheerio";
 
 function isListItem(element): boolean {
   // if the list path is in the url
@@ -93,7 +93,7 @@ export type Image = z.infer<typeof getImageSchema>;
 
 function getImage(element): Image {
   const description = element.find("description").text();
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   // find the film poster and grab it's src
   const image = $("p img").attr("src");
@@ -115,7 +115,7 @@ function getImage(element): Image {
 function getReview(element): string {
   const description = element.find("description").text();
 
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   const reviewParagraphs = $("p");
 
@@ -157,7 +157,7 @@ export type ListFilms = z.infer<typeof listFilms>;
 
 function getListFilms(element): ListFilms[] {
   const description = element.find("description").text();
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   const films = [];
   $("li a").each((i, filmElement) => {
@@ -171,7 +171,7 @@ function getListFilms(element): ListFilms[] {
 
 function getListDescription(element): string {
   const description = element.find("description").text();
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   let result = "";
 
@@ -196,7 +196,7 @@ function getListDescription(element): string {
 
 function getListTotalFilms(element): number {
   const description = element.find("description").text();
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   const films = getListFilms(element);
 
@@ -237,7 +237,7 @@ function getListTotalFilms(element): number {
 
 function isListRanked(element): boolean {
   const description = element.find("description").text();
-  const $ = cheerio.load(description);
+  const $ = load(description);
 
   const isOrderedListPresent = !!$("ol").length;
   return isOrderedListPresent;
@@ -340,7 +340,7 @@ function getDiaryData(username: string): Promise<string[]> {
       return response.text();
     })
     .then((xml) => {
-      const $ = cheerio.load(xml, { xmlMode: true });
+      const $ = load(xml, { xmlMode: true });
 
       const items = [];
 
