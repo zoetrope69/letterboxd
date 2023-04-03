@@ -243,46 +243,43 @@ function isListRanked(element): boolean {
   return isOrderedListPresent;
 }
 
-const processedItem = z.object({
-  type: z.literal("list").or(z.literal("diary")),
+const Diary = z.object({
+  type: z.literal("diary"),
   date: z.object({
     published: z.number(),
     watched: z.number().optional(),
   }),
+  film: z.object({
+    title: z.string(),
+    year: z.string(),
+    image: z.object({
+      tiny: z.string(),
+      small: z.string(),
+      medium: z.string(),
+      large: z.string()
+    })
+  }),
+  rating: z.object({ text: z.string(), score: z.number() }),
+  review: z.string(),
+  spoilers: z.boolean(),
+  isRewatch: z.boolean(),
+  uri: z.string()
+});
+export type Diary = z.infer<typeof Diary>;
+
+const List = z.object({
+  type: z.literal("list"),
+  date: z.object({ published: z.number() }),
   title: z.string(),
   description: z.string(),
   ranked: z.boolean(),
-  films: z
-    .array(
-      z.object({
-        title: z.string(),
-        uri: z.string(),
-      })
-    )
-    .optional(),
-  totalFilms: z.number().optional(),
+  films: z.array(listFilms),
+  totalFilms: z.number(),
   uri: z.string(),
-  film: z
-    .object({
-      title: z.string(),
-      year: z.string().optional(),
-      image: getImageSchema.optional(),
-    })
-    .optional(),
-  rating: z
-    .object({
-      text: z.string(),
-      score: z.number(),
-    })
-    .optional(),
-  review: z.string().optional(),
-  spoilers: z.boolean().optional(),
-  isRewatch: z.boolean().optional(),
-});
+})
+export type List = z.infer<typeof List>
 
-export type ProcessedItem = z.infer<typeof processedItem>;
-
-function processItem(element): ProcessedItem {
+function processItem(element): Diary | List {
   // there are two types of items: lists and diary entries
   if (isListItem(element)) {
     return {
@@ -342,7 +339,7 @@ function getDiaryData(username: string): Promise<string[]> {
     .then((xml) => {
       const $ = load(xml, { xmlMode: true });
 
-      const items = [];
+      const items: List[] | Diary[] = [];
 
       $("item").each((i, element) => {
         items[i] = processItem($(element));
@@ -352,7 +349,9 @@ function getDiaryData(username: string): Promise<string[]> {
     });
 }
 
-function letterboxd(username: string): Promise<string[]> {
+type ResponseSchema = Diary & List & string;
+
+function letterboxd(username: string): Promise<ResponseSchema[]> {
   if (invalidUsername(username)) {
     return Promise.reject(new Error("No username sent as a parameter"));
   }

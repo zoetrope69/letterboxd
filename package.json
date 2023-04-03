@@ -1,6 +1,8 @@
 {
   "name": "letterboxd-api",
   "description": "get public diary data for letterboxd users",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": "./index.js",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -9,7 +11,7 @@
     "prepublish": "tsc",
     "prettier": "prettier --write .",
     "lint": "eslint . --config .eslintrc.js",
-    "example": "npx ts-node --esm example.ts",
+    "example": "npx ts-node --esm test/example.ts",
     "pretest": "npm run example && npm run prettier && npm run lint",
     "test": "npm run test:js",
     "test:js": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
@@ -25,6 +27,7 @@
   "author": "Roman <zeromero.dev@gmail.com.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^18.15.11",
     "cheerio": "^1.0.0-rc.12",
     "node-fetch": "^2.6.6",
     "zod": "^3.21.4"
