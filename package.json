@@ -1,9 +1,9 @@
 {
   "name": "letterboxd-api",
+  "version": "1.0.1",
   "description": "get public diary data for letterboxd users",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": "./index.js",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
@@ -29,8 +29,7 @@
   "dependencies": {
     "@types/node": "^18.15.11",
     "cheerio": "^1.0.0-rc.12",
-    "node-fetch": "^2.6.6",
-    "zod": "^3.21.4"
+    "node-fetch": "^2.6.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.0",

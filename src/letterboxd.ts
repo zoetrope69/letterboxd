@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
-import z from "zod";
-import {load} from "cheerio";
+import { load } from "cheerio";
 
 function isListItem(element): boolean {
   // if the list path is in the url
@@ -51,17 +50,18 @@ function getIsRewatch(element): boolean {
   return rewatchData === "Yes";
 }
 
-const ratingSchema = z.object({
-  text: z.string(),
-  score: z.number(),
-});
-
-export type Rating = z.infer<typeof ratingSchema>;
+export type Rating = {
+  text: string;
+  score: number;
+};
 
 function getRating(element) {
   const memberRating = getMemberRating(element).toString();
 
-  const rating: Rating = {};
+  const rating: Rating = {
+    text: "", //initialise with empty string
+    score: 0, //initialise with 0
+  };
 
   const scoreToTextMap = {
     "-1.0": "None",
@@ -83,13 +83,14 @@ function getRating(element) {
   return rating;
 }
 
-const getImageSchema = z.object({
-  tiny: z.string(),
-  small: z.string(),
-  medium: z.string(),
-  large: z.string(),
-});
-export type Image = z.infer<typeof getImageSchema>;
+export type Image =
+  | {
+      tiny: string;
+      small: string;
+      medium: string;
+      large: string;
+    }
+  | {};
 
 function getImage(element): Image {
   const description = element.find("description").text();
@@ -148,12 +149,10 @@ function getReview(element): string {
   return review;
 }
 
-const listFilms = z.object({
-  title: z.string(),
-  uri: z.string(),
-});
-
-export type ListFilms = z.infer<typeof listFilms>;
+export type ListFilms = {
+  title: string;
+  uri: string;
+};
 
 function getListFilms(element): ListFilms[] {
   const description = element.find("description").text();
@@ -243,41 +242,36 @@ function isListRanked(element): boolean {
   return isOrderedListPresent;
 }
 
-const Diary = z.object({
-  type: z.literal("diary"),
-  date: z.object({
-    published: z.number(),
-    watched: z.number().optional(),
-  }),
-  film: z.object({
-    title: z.string(),
-    year: z.string(),
-    image: z.object({
-      tiny: z.string(),
-      small: z.string(),
-      medium: z.string(),
-      large: z.string()
-    })
-  }),
-  rating: z.object({ text: z.string(), score: z.number() }),
-  review: z.string(),
-  spoilers: z.boolean(),
-  isRewatch: z.boolean(),
-  uri: z.string()
-});
-export type Diary = z.infer<typeof Diary>;
+export type Diary = {
+  type: "diary";
+  date: {
+    published: number;
+    watched?: number;
+  };
+  film: {
+    title: string;
+    year: string;
+    image: Image;
+  };
+  rating: Rating;
+  review: string;
+  spoilers: boolean;
+  isRewatch: boolean;
+  uri: string;
+};
 
-const List = z.object({
-  type: z.literal("list"),
-  date: z.object({ published: z.number() }),
-  title: z.string(),
-  description: z.string(),
-  ranked: z.boolean(),
-  films: z.array(listFilms),
-  totalFilms: z.number(),
-  uri: z.string(),
-})
-export type List = z.infer<typeof List>
+export type List = {
+  type: "list";
+  date: {
+    published: number;
+  };
+  title: string;
+  description: string;
+  ranked: boolean;
+  films: ListFilms[];
+  totalFilms: number;
+  uri: string;
+};
 
 function processItem(element): Diary | List {
   // there are two types of items: lists and diary entries
@@ -320,7 +314,7 @@ function invalidUsername(username: string): boolean {
   return !username || username.trim().length <= 0;
 }
 
-function getDiaryData(username: string): Promise<string[]> {
+function getDiaryData(username: string): Promise<Diary[] | List[]> {
   const uri = `https://letterboxd.com/${username}/rss/`;
 
   return fetch(uri)
@@ -349,9 +343,7 @@ function getDiaryData(username: string): Promise<string[]> {
     });
 }
 
-type ResponseSchema = Diary & List & string;
-
-function letterboxd(username: string): Promise<ResponseSchema[]> {
+function letterboxd(username: string): Promise<Diary[] | List[]> {
   if (invalidUsername(username)) {
     return Promise.reject(new Error("No username sent as a parameter"));
   }
