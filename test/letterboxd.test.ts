@@ -168,7 +168,7 @@ describe("letterboxd", () => {
 
   it("should return an error if the username is null", () => {
     const username = null;
-
+    // @ts-expect-error
     return letterboxd(username).catch((e) => {
       expect(e.message).toEqual("No username sent as a parameter");
     });

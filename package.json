@@ -24,7 +24,7 @@
     "type": "git",
     "url": "https://github.com/zeromero-dev/letterboxd-api"
   },
-  "author": "Roman <zeromero.dev@gmail.com.com>",
+  "author": "Roman <holubenko.job@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^18.15.11",

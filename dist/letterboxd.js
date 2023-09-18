@@ -6,7 +6,6 @@ var __importDefault =
   };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_fetch_1 = __importDefault(require("node-fetch"));
-const zod_1 = __importDefault(require("zod"));
 const cheerio_1 = require("cheerio");
 function isListItem(element) {
   // if the list path is in the url
@@ -45,13 +44,12 @@ function getIsRewatch(element) {
   const rewatchData = element.find("letterboxd\\:rewatch").text();
   return rewatchData === "Yes";
 }
-const ratingSchema = zod_1.default.object({
-  text: zod_1.default.string(),
-  score: zod_1.default.number(),
-});
 function getRating(element) {
   const memberRating = getMemberRating(element).toString();
-  const rating = {};
+  const rating = {
+    text: "",
+    score: 0, //initialise with 0
+  };
   const scoreToTextMap = {
     "-1.0": "None",
     0.5: "½",
@@ -69,12 +67,6 @@ function getRating(element) {
   rating.score = parseFloat(memberRating);
   return rating;
 }
-const getImageSchema = zod_1.default.object({
-  tiny: zod_1.default.string(),
-  small: zod_1.default.string(),
-  medium: zod_1.default.string(),
-  large: zod_1.default.string(),
-});
 function getImage(element) {
   const description = element.find("description").text();
   const $ = (0, cheerio_1.load)(description);
@@ -118,10 +110,6 @@ function getReview(element) {
   review = review.trim();
   return review;
 }
-const listFilms = zod_1.default.object({
-  title: zod_1.default.string(),
-  uri: zod_1.default.string(),
-});
 function getListFilms(element) {
   const description = element.find("description").text();
   const $ = (0, cheerio_1.load)(description);
@@ -191,41 +179,6 @@ function isListRanked(element) {
   const isOrderedListPresent = !!$("ol").length;
   return isOrderedListPresent;
 }
-const Diary = zod_1.default.object({
-  type: zod_1.default.literal("diary"),
-  date: zod_1.default.object({
-    published: zod_1.default.number(),
-    watched: zod_1.default.number().optional(),
-  }),
-  film: zod_1.default.object({
-    title: zod_1.default.string(),
-    year: zod_1.default.string(),
-    image: zod_1.default.object({
-      tiny: zod_1.default.string(),
-      small: zod_1.default.string(),
-      medium: zod_1.default.string(),
-      large: zod_1.default.string(),
-    }),
-  }),
-  rating: zod_1.default.object({
-    text: zod_1.default.string(),
-    score: zod_1.default.number(),
-  }),
-  review: zod_1.default.string(),
-  spoilers: zod_1.default.boolean(),
-  isRewatch: zod_1.default.boolean(),
-  uri: zod_1.default.string(),
-});
-const List = zod_1.default.object({
-  type: zod_1.default.literal("list"),
-  date: zod_1.default.object({ published: zod_1.default.number() }),
-  title: zod_1.default.string(),
-  description: zod_1.default.string(),
-  ranked: zod_1.default.boolean(),
-  films: zod_1.default.array(listFilms),
-  totalFilms: zod_1.default.number(),
-  uri: zod_1.default.string(),
-});
 function processItem(element) {
   // there are two types of items: lists and diary entries
   if (isListItem(element)) {
