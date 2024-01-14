@@ -54,7 +54,7 @@ items of note for the list type:
     spoilers: false,
     isRewatch: false,
     date: { watched: 1463702400000, published: 1463784779000 },
-    uri: "https://letterboxd.com/zaccolley/film/zootopia/",
+    uri: "https://letterboxd.com/zoetrope69/film/zootopia/",
   },
   //...
   {
@@ -79,7 +79,7 @@ items of note for the list type:
       },
     ],
     totalFilms: 56,
-    uri: "https://letterboxd.com/zaccolley/list/tiff-2016/",
+    uri: "https://letterboxd.com/zoetrope69/list/tiff-2016/",
   },
   //...
 ];
