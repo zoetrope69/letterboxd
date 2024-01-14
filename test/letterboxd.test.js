@@ -32,7 +32,7 @@ const expectedItems = [
       published: 1593351708000,
       watched: 1593302400000,
     },
-    uri: "https://letterboxd.com/zaccolley/film/eurovision-song-contest-the-story-of-fire-saga/",
+    uri: "https://letterboxd.com/zoetrope69/film/eurovision-song-contest-the-story-of-fire-saga/",
   },
   {
     type: "diary",
@@ -61,7 +61,7 @@ const expectedItems = [
       "learnt more about civil rights movement, and there's a disabled drag queen. sick doc",
     spoilers: false,
     isRewatch: true,
-    uri: "https://letterboxd.com/zaccolley/film/crip-camp-a-disability-revolution/",
+    uri: "https://letterboxd.com/zoetrope69/film/crip-camp-a-disability-revolution/",
   },
   {
     type: "diary",
@@ -90,7 +90,7 @@ const expectedItems = [
       "glad to see diabetic representation, sweaty and not doing much for the whole film",
     spoilers: true,
     isRewatch: false,
-    uri: "https://letterboxd.com/zaccolley/film/con-air/",
+    uri: "https://letterboxd.com/zoetrope69/film/con-air/",
   },
   {
     type: "list",
@@ -137,7 +137,7 @@ const expectedItems = [
       { title: "Una", uri: "https://letterboxd.com/film/una-2016/" },
     ],
     totalFilms: 56,
-    uri: "https://letterboxd.com/zaccolley/list/tiff-2016/",
+    uri: "https://letterboxd.com/zoetrope69/list/tiff-2016/",
   },
   {
     type: "list",
@@ -152,7 +152,7 @@ const expectedItems = [
       { title: "Fake 2", uri: "https://letterboxd.com/film/fake-2-2016/" },
     ],
     totalFilms: 2,
-    uri: "https://letterboxd.com/zaccolley/list/fake-list/",
+    uri: "https://letterboxd.com/zoetrope69/list/fake-list/",
   },
 ];
 
@@ -188,7 +188,7 @@ describe("letterboxd", () => {
   });
 
   it("should return an array of items for a valid username", () => {
-    const username = "zaccolley";
+    const username = "zoetrope69";
 
     nock(BASE_URL)
       .get(`/${username}/rss/`)
