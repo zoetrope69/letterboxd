@@ -20,9 +20,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zactopus/letterboxd.git"
+    "url": "https://github.com/zoetrope69/letterboxd.git"
   },
-  "author": "zac <hi@zaccolley.com> (http://zac.land/)",
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
