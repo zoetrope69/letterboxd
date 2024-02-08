@@ -4,10 +4,8 @@ import nock from "nock";
 // import letterboxd from "../index.js";
 import letterboxd from "../index";
 
-//@ts-ignore
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const cwd = process.cwd();
-const __dirname = path.dirname(cwd);
+const __dirname = path.dirname(cwd + "/letterboxd-api"); //foldername of the project 
 
 const expectedItems = [
   {
@@ -196,9 +194,13 @@ describe("letterboxd", () => {
 
     nock(BASE_URL)
       .get(`/${username}/rss/`)
-      .replyWithFile(200, path.join(__dirname, "/fixtures/rss-sample.xml"), {
-        "Content-Type": "application/xml",
-      });
+      .replyWithFile(
+        200,
+        path.join(__dirname, "test/fixtures/rss-sample.xml"),
+        {
+          "Content-Type": "application/xml",
+        }
+      );
 
     return letterboxd(username).then((items) => {
       expect(items).toEqual(expectedItems);
