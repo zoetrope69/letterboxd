@@ -1,13 +1,10 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import nock from "nock";
-// import letterboxd from "../index.js";
-import letterboxd from "../index";
+import letterboxd from "../index.js";
 
 //@ts-ignore
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const cwd = process.cwd();
-const __dirname = path.dirname(cwd);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const expectedItems = [
   {
@@ -161,8 +158,6 @@ const expectedItems = [
 const BASE_URL = "https://letterboxd.com";
 
 describe("letterboxd", () => {
-  // jest.setTimeout(30000);
-
   beforeEach(() => {
     expect.assertions(1);
   });
@@ -192,7 +187,7 @@ describe("letterboxd", () => {
   });
 
   it("should return an array of items for a valid username", () => {
-    const username = "zeromero";
+    const username = "zaccolley";
 
     nock(BASE_URL)
       .get(`/${username}/rss/`)

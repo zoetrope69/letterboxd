@@ -2,6 +2,7 @@ exports = {
   env: {
     node: true,
     es2021: true,
+    es6: true,
     "jest/globals": true,
   },
   extends: [
@@ -12,7 +13,7 @@ exports = {
   ],
   plugins: ["prettier", "jest"],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: "latest",
   },
   rules: {
     "prettier/prettier": ["error"],

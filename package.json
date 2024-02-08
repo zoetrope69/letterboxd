@@ -1,6 +1,6 @@
 {
   "name": "letterboxd-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "get public diary data for letterboxd users",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,6 +32,8 @@
     "node-fetch": "^2.6.6"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
     "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "cross-env": "7.0.3",
