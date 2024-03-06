@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import cheerio from "cheerio";
+import TurndownService from 'turndown';
 
 function isListItem(element) {
   // if the list path is in the url
@@ -132,6 +133,33 @@ function getReview(element) {
   return review;
 }
 
+function getReviewAsMarkdown(element) {
+ const description = element.find("description").text();
+
+  const $ = cheerio.load(description);
+
+  const reviewParagraphs = $("p").slice(1);
+
+  let review = "";
+
+  // if there is no review return the item
+  if (reviewParagraphs.length <= 0) {
+    return review;
+  }
+
+  // the rest of description is a review, if there is no review the string 'Watched on ' will appear
+  // this assumes you didn't write the 'Watched on ' string in your review... weak
+  if (reviewParagraphs.last().text().includes("Watched on ")) {
+    return review;
+  }
+
+  review = reviewParagraphs.toString();
+  const turndownService = new TurndownService();
+  const reviewMarkdown = turndownService.turndown(review);
+
+  return reviewMarkdown;
+}
+
 function getListFilms(element) {
   const description = element.find("description").text();
   const $ = cheerio.load(description);
@@ -220,7 +248,7 @@ function isListRanked(element) {
   return isOrderedListPresent;
 }
 
-function processItem(element) {
+function processItem(element, reviewFormat) {
   // there are two types of items: lists and diary entries
 
   if (isListItem(element)) {
@@ -252,7 +280,7 @@ function processItem(element) {
       image: getImage(element),
     },
     rating: getRating(element),
-    review: getReview(element),
+    review: reviewFormat == 'markdown' ? getReviewAsMarkdown(element): getReview(element),
     spoilers: getSpoilers(element),
     isRewatch: getIsRewatch(element),
     uri: getUri(element),
@@ -263,7 +291,7 @@ function invalidUsername(username) {
   return !username || username.trim().length <= 0;
 }
 
-function getDiaryData(username) {
+function getDiaryData(username, reviewFormat) {
   const uri = `https://letterboxd.com/${username}/rss/`;
 
   return fetch(uri)
@@ -285,20 +313,20 @@ function getDiaryData(username) {
       const items = [];
 
       $("item").each((i, element) => {
-        items[i] = processItem($(element));
+        items[i] = processItem($(element), reviewFormat);
       });
 
       return items;
     });
 }
 
-function letterboxd(username) {
+function letterboxd(username, reviewFormat) {
   // check if a valid username has been passed in
   if (invalidUsername(username)) {
     return Promise.reject(new Error("No username sent as a parameter"));
   }
 
-  return getDiaryData(username);
+  return getDiaryData(username, reviewFormat);
 }
 
 export default letterboxd;
